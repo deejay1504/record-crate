@@ -1,0 +1,29 @@
+application: record-crate
+version: 1
+runtime: php
+api_version: 1
+
+handlers:
+- url: /stylesheets
+  static_dir: stylesheets
+
+- url: /stylesheets/images
+  static_dir: stylesheets/images
+  
+- url: /images
+  static_dir: images
+
+- url: /js
+  static_dir: js
+  
+- url: /crud.*
+  script: crud.php
+
+- url: /displaycrate.*
+  script: displaycrate.php
+
+- url: /process.*
+  script: process.php
+
+- url: /.*
+  script: menu.php

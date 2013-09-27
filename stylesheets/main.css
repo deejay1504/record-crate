@@ -1,0 +1,409 @@
+h1 {
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 3px;
+} 
+
+body {
+  font-size: 14px;
+  font-family: Verdana, Helvetica, sans-serif;
+  background-color: #DDDDDD;
+}
+
+label {
+    display: block;
+    margin: 5px 0;
+}
+
+container {
+	margin: 0px auto;
+}
+
+.bold {
+	font-weight: bold;
+}
+ 
+.error {
+    font-weight: bold;
+    color: #BB0000;
+}
+
+.crateButtonField {
+    position:absolute;
+	top:300px;
+    left:615px;
+}
+
+.recordButtonField {
+    position:absolute;
+	top:300px;
+    left:820px;
+}
+
+.mainHeaderStyle, .sortHeaderPos, .sortFieldPos, .searchHeaderPos, .searchByFieldPos, .dateHeaderPos, 
+.mainHeaderPos, .totalHeaderPos, .aSideHeaderPos, .bSideHeaderPos, .aaSideHeaderPos {
+	font-weight: bold;
+    position:absolute;
+    top:30px;
+    height:100%;
+}
+
+.dateHeaderPos {
+    left:115px;
+    width:200px;
+}
+
+.sortHeaderPos {
+    left:280px;
+}
+
+.sortFieldPos {
+	top:25px;
+    left:335px;
+}
+
+.sortOrderIconPos {
+	top:19px;
+    left:449px;
+}
+
+.searchHeaderPos {
+    left:610px;
+}
+
+.searchByFieldPos {
+	top:25px;
+    left:691px;
+}
+
+.mainHeaderPos {
+    top:22px;
+    left:870px;
+    width:240px;
+}
+
+.totalHeaderPos {
+    left:1240px;
+    width:200px;
+}
+
+.aSideHeaderPos {
+    left:1460px;
+    width:100px;
+}
+
+.bSideHeaderPos {
+	left:1550px;
+    width:100px;
+}
+
+.aaSideHeaderPos {
+    left:1635px;
+    width:100px;
+}
+
+.headerStyle, .artistHeaderPos, .songTitleHeaderPos, .recordLabelHeaderPos, .yearHeaderPos, .durationHeaderPos, .sideHeaderPos, 
+.songFormatHeaderPos, .genreHeaderPos, .bpmHeaderPos {
+	font-weight: bold;
+	font-size: 16px;
+    position:absolute;
+    top:68px;
+    height:100%;
+}
+
+.artistHeaderPos {
+    left:136px;
+}
+
+.songTitleHeaderPos {
+    left:468px;
+}
+
+.recordLabelHeaderPos {
+    left:743px;
+}
+
+.yearHeaderPos {
+    left:970px;
+}
+
+.durationHeaderPos {
+    left:1050px;
+}
+
+.sideHeaderPos {
+    left:1150px;
+}
+
+.songFormatHeaderPos {
+    left:1250px;
+}
+
+.genreHeaderPos {
+    left:1400px;
+}
+
+.bpmHeaderPos {
+    left:1629px;
+}
+
+.rowStyle {
+    position:relative;
+    padding: 0px 0px; 
+    height: 30px;
+}
+
+.tablePos {
+    position:relative;
+	top:85px;
+    left:50px;
+} 
+
+.editButton {
+	margin-top: 6px;
+	margin-left: 70px;
+    width:5px;
+    height:5px;
+} 
+
+.deleteButton {
+	margin-top: -2px;
+	margin-left: 95px;
+    width:25px;
+    height:25px;
+} 
+
+.editButtonEnd {
+	margin-top: -33px;
+	margin-left: 1656px;
+    width:5px;
+    height:5px;
+} 
+
+.deleteButtonEnd {
+	margin-top: -2px;
+	margin-left: 1681px;
+    width:25px;
+    height:25px;
+} 
+
+.artistField, .songTitleField, .recordLabelField, .yearField, .durationField, 
+.sideField, .songFormatField, .genreField, .bpmField, .displayPagesField {
+    position:absolute;
+    border-radius:15px;
+    padding-left: 7px; 
+}
+
+.artistField {
+	top:8px;
+    left:127px;
+    width:290px;
+    background-color: #99FFCC;
+}
+
+.songTitleField {
+	top:8px;
+    left:456px;
+    width:252px;
+    background-color: #CCFFFF;
+}
+
+.recordLabelField {
+	top:8px;
+    left:731px;
+    width:200px;
+    background-color: #99FFCC;
+}
+
+.yearField {
+	top:8px;
+    left:960px;
+    width:42px;
+    background-color: #CCFFFF;
+}
+
+.durationField {
+	top:8px;
+    left:1040px;
+    width:65px;
+    background-color: #99FFCC;
+}
+
+.sideField {
+	top:8px;
+    left:1140px;
+    width:55px;
+    background-color: #CCFFFF;
+}
+
+.songFormatField {
+	top:8px;
+    left:1240px;
+    width:105px;
+    background-color: #99FFCC;
+}
+
+.genreField {
+	top:8px;
+    left:1391px;
+    width:180px;
+    background-color: #CCFFFF;
+}
+
+.bpmField {
+	top:8px;
+    left:1617px;
+    width:28px;
+    background-color: #99FFCC;
+}
+
+.currentPageField, .displayPagesField, .homePageLink, .addSongLink, .displayJumpMenuField, .searchTotal {
+	position:absolute;
+}
+
+.circle1, .circle2 {
+	position:absolute;
+	border-radius: 50%;
+    background-color: #FFFFFF;
+    width:35px;
+    height:35px;
+	top:-6px;
+}
+
+.circle1 {
+    left:36px;
+}
+
+.circle2 {
+    left:89px;
+}
+
+.currentPageNumber, .totalPages {
+	position:absolute;
+	top:1px;
+}
+
+.currentPageNumber {
+    left:44px;
+}
+
+.totalPages {
+    left:99px;
+}
+
+.ofText {
+	position:absolute;
+	top:0px;
+	left:73px;
+}
+
+.currentPageField {
+	top:-10px;
+    left:77px;
+}
+
+.displayPagesField {
+	top:-10px;
+    left:765px;
+}
+
+
+.homePageLink {
+	top:15px;
+    left:1070px;
+}
+
+.addSongLink {
+	top:19px;
+    left:1118px;
+}
+
+.displayJumpMenuField {
+	top:-14px;
+    left:1470px;
+}
+
+.songBpmIFrame {
+	position:absolute;
+	left:130px;
+}
+
+.discogsIFrame {
+	position:absolute;
+	left:980px;
+}
+
+.saveCrudButton {
+	position:absolute;
+	left:775px;
+}
+
+.backCrudButton {
+	position:absolute;
+	left:882px;
+}
+
+.songBpmDivButton {
+	position:absolute;
+	left:975px;
+}
+
+.crudMainHeader, .crudMainDate, .crudTotalRecords, .crudASides, .crudBSides, .crudAASides {
+	position:absolute;
+	font-size: 16px;
+	font-size: 16px;
+  	font-family: Verdana, Helvetica, sans-serif;
+  	font-weight: bold;
+  	top:1px;
+}
+
+.crudMainHeader {
+	left:802px;
+}
+
+.crudMainDate {
+	left:100px;
+}
+
+.crudTotalRecords {
+	left:1200px;
+}
+
+.crudAsides {
+	left:1430px;
+}
+
+.crudBsides {
+	left:1550px;
+}
+
+.crudAAsides {
+	left:1650px;
+}
+
+.crudHeader {
+	position:absolute;
+	font-size: 16px;
+  	font-family: Verdana, Helvetica, sans-serif;
+  	top:9px;
+	left:739px;
+}
+
+.crudField {
+	position:absolute;
+  	top:5px;
+	left:898px;
+}
+
+.noRecordsFound {
+  	top:35px;
+	text-align: center;
+	font-size: 20px;
+  	font-weight: bold;
+}
+
+.searchTotal {
+  	top:-10px;
+	left:222px;
+}
