@@ -159,6 +159,7 @@
 	<!DOCTYPE html>
 	<html>
 	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Record Crate</title>
 	<link type="text/css" rel="stylesheet" href="/stylesheets/images/ui-icons_2e83ff_256x240.png" />
 	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
@@ -239,6 +240,42 @@
 				$("#confirmDialog").dialog("open");
 			}
 
+			function exportDb(event) {
+				event.preventDefault();
+				event.stopPropagation();
+				
+				$.ajax({
+					type : 'POST',
+					url : 'dbexport.php',
+					dataType : 'json',
+					success : function(data) {
+						$("#searchFieldLabel").html('Data exported to <b>' + data.msg + '</b>');
+					},
+					error : function(XMLHttpRequest, textStatus, errorThrown) {
+						$("#searchFieldLabel").html('ERROR - ' + textStatus + ' ' + errorThrown);
+					}
+				});
+				
+				// Override the dialogBox in script.js to add our own 'Ok' button
+				var exportDialogBox = dialogBox;
+				var dialogButtons = exportDialogBox.dialog("option", "buttons"); 
+				$.extend(dialogButtons, { 
+					Ok: function() {
+						exportDialogBox.dialog("close");
+					} 
+				});
+				exportDialogBox.dialog("option", "buttons", dialogButtons); 
+				
+				// Hide the Cancel button as we only need an Ok button for this alert dialog
+				$(".ui-dialog-buttonpane button:contains('Cancel')").button().hide();
+				
+				exportDialogBox.dialog('option', 'title', 'Database Export');
+				exportDialogBox.dialog('option', 'width', '520px');
+				$("#searchFieldValue").hide();
+				$(".searchFieldDiv").css({"width":"490px"});
+				exportDialogBox.dialog("open");
+			}
+			
 			$("#searchField").change(function() {
 				// Override the dialogBox in script.js to add our own 'Ok' button
 				var dialogButtons = dialogBox.dialog("option", "buttons"); 
@@ -248,12 +285,15 @@
 					} 
 				});
 				dialogBox.dialog("option", "buttons", dialogButtons); 
+				dialogBox.dialog('option', 'width', '350px');
 				
 				searchFieldArr  = $("#searchField").val().split(":"); 
 				searchField     = searchFieldArr[0]; 
 				searchFieldName = searchFieldArr[1]; 
 				$("#searchDialog").dialog('option', 'title', searchFieldName + ' Search');
 				$("#searchFieldLabel").html('Please enter the ' + searchFieldName + ' search value: ');
+				$("#searchFieldValue").show();
+				$(".searchFieldDiv").css({"width":"320px"});
 				$("#searchDialog").dialog("open");
 			});
 			
@@ -271,8 +311,9 @@
 				setConfirmDialogMessage(event, this.title);
 			});
 
-			$("#exportButton").click(function() {
-				window.location.href = '/dbexport.php';
+			$("#exportButton").click(function(event) {
+				exportDb(event);
+				//window.location.href = '/dbexport.php';
 			});
 			
 			blink('.textMessage');
@@ -327,7 +368,7 @@
 			</div>
 			
 			<div id="searchDialog">
-				<label id="searchFieldLabel"></label>
+				<label class="searchFieldDiv" id="searchFieldLabel"></label>
 				<input type="text" id="searchFieldValue"/>
 			</div>
 		

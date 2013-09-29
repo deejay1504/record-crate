@@ -1,3 +1,5 @@
+@CHARSET "UTF-8";
+
 h1 {
 	font-size: 24px;
 	font-weight: bold;
@@ -75,6 +77,10 @@ container {
 .searchByFieldPos {
 	top:25px;
     left:604px;
+}
+
+.searchFieldDiv {
+    width:330px;
 }
 
 .exportButtonPos {
