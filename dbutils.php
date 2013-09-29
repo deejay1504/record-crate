@@ -15,8 +15,7 @@ class DbUtils {
     function DbUtils() { 
     	try {
 	        $this->dbConnection = 
-	        	new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password, 
-	        		array(PDO::ATTR_PERSISTENT => true));
+	        	new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password);
     	} catch (PDOException $pe) {
 		    die("Could not connect to the database $dbname :" . $pe->getMessage());
 		}
@@ -99,6 +98,35 @@ class DbUtils {
         endwhile;
         
         $this->totalAASides = ($this->totalAASides / 2);
+    }
+    
+    function dbExport($exportPath, $exportName) {
+    	$sql = "select songId, artist, songTitle, recordLabel, year, duration, side, songFormat, genre, bpm from crate";
+					
+		try {
+			$results = $this->dbConnection->query($sql);
+	
+			$filename = $exportPath . $exportName; 
+			  
+			// The w+ parameter will wipe out and overwrite any existing file with the same name 
+			$handle = fopen($filename, 'w+'); 
+			  
+			// Write the spreadsheet column titles / labels 
+			fputcsv($handle, array('Song Id', 'Artist', 'Song Title', 'Record Label', 'Year', 'Duration', 'Side', 'Song Format', 'Genre', 'BPM')); 
+			  
+			// Write all the records to the spreadsheet 
+			$results->setFetchMode(PDO::FETCH_ASSOC);
+			foreach($results as $row) { 
+			    fputcsv($handle, array($row['songId'], $row['artist'], $row['songTitle'], $row['recordLabel'], 
+			                           $row['year'], $row['duration'], $row['side'], 
+			                           $row['songFormat'], $row['genre'], $row['bpm']));
+			} 
+			
+			fclose($handle); 
+		} 
+		catch (PDOException $e) { 
+	   		die("Insert failure: " . $e->getMessage()); 
+		}
     }
   
 }  

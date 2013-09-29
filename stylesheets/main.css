@@ -69,12 +69,17 @@ container {
 }
 
 .searchHeaderPos {
-    left:610px;
+    left:530px;
 }
 
 .searchByFieldPos {
 	top:25px;
-    left:691px;
+    left:604px;
+}
+
+.exportButtonPos {
+	top:25px;
+    left:744px;
 }
 
 .mainHeaderPos {
@@ -406,4 +411,14 @@ container {
 .searchTotal {
   	top:-10px;
 	left:222px;
+}
+
+.dbMsg {
+  	top:150px;
+	left:670px;
+}
+
+.backExportDiv {
+  	top:170px;
+	left:860px;
 }

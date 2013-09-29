@@ -79,86 +79,8 @@
 			$likeFieldValue = '\'%' . $searchFieldValue . '%\'';
 	
 			$db = new DbUtils;  
-			
 			$db->countTotals($crudOp, $searchFieldValue, $searchField, $likeFieldValue);
 		    
-		    // Count the genuine number of records for the pagination
-//		    $sql = 'SELECT count(*) as totalRecords
-//		            FROM crate';
-//		    
-//		    if ($crudOp == "SEARCH" && $searchFieldValue != "null") {
-//		    	$sql = $sql . ' WHERE ' . $searchField . ' like ' . $likeFieldValue;
-//		    }
-//		    
-//		    try { 
-//			   $countQuery = $db->dbConnection->query($sql); 
-//			} 
-//			catch (PDOException $e) { 
-//			   die("Query failure: " . $e->getMessage()); 
-//			}
-//			
-//			$countQuery->setFetchMode(PDO::FETCH_ASSOC);
-//	
-//			// Count the number of A Sides to display as part of the total
-//		    $sql = 'SELECT count(*) as totalASides
-//		            FROM crate
-//					WHERE side = \'A Side\'';
-//		    
-//		    try { 
-//			   $aSideQuery = $db->dbConnection->query($sql); 
-//			} 
-//			catch (PDOException $e) { 
-//			   die("Query failure: " . $e->getMessage()); 
-//			}
-//			
-//			$aSideQuery->setFetchMode(PDO::FETCH_ASSOC);
-//	
-//			// Count the number of B Sides 
-//		    $sql = 'SELECT count(*) as totalBSides
-//		            FROM crate
-//					WHERE side = \'B Side\'';
-//		    
-//		    try { 
-//			   $bSideQuery = $db->dbConnection->query($sql); 
-//			} 
-//			catch (PDOException $e) { 
-//			   die("Query failure: " . $e->getMessage()); 
-//			}
-//			
-//			$bSideQuery->setFetchMode(PDO::FETCH_ASSOC);
-//		
-//			// Count the number of AA Sides to display as part of the total
-//		    $sql = 'SELECT count(*) as totalAASides
-//		            FROM crate
-//					WHERE side = \'AA Side\'';
-//		    
-//		    try { 
-//			   $aaSideQuery = $db->dbConnection->query($sql); 
-//			} 
-//			catch (PDOException $e) { 
-//			   die("Query failure: " . $e->getMessage()); 
-//			}
-//			
-//			$aaSideQuery->setFetchMode(PDO::FETCH_ASSOC);
-//			
-//			while ($dbRow = $countQuery->fetch()): 
-//		    	$totalRecords = trim(htmlspecialchars($dbRow['totalRecords']));
-//	        endwhile;
-//	
-//			while ($dbRow = $aSideQuery->fetch()): 
-//		    	$totalASides = trim(htmlspecialchars($dbRow['totalASides']));
-//	        endwhile;
-//	
-//			while ($dbRow = $bSideQuery->fetch()): 
-//		    	$totalBSides = trim(htmlspecialchars($dbRow['totalBSides']));
-//	        endwhile;
-//	        
-//			while ($dbRow = $aaSideQuery->fetch()): 
-//		    	$totalAASides = trim(htmlspecialchars($dbRow['totalAASides']));
-//	        endwhile;
-//	        
-//	        $totalAASides = ($totalAASides / 2);
-		
 			$pages                   = new Paginator;  
 			$pages->sortField        = $sortField;
 			$pages->orderByField     = $orderByField;
@@ -316,7 +238,7 @@
 				$("#confirmDialogLabel").html('Are you sure you want to delete ' + deleteTitle + '?');
 				$("#confirmDialog").dialog("open");
 			}
-			
+
 			$("#searchField").change(function() {
 				// Override the dialogBox in script.js to add our own 'Ok' button
 				var dialogButtons = dialogBox.dialog("option", "buttons"); 
@@ -339,12 +261,18 @@
 				sortByAscDesc();
 			});
 			
+			// Use the CSS class here as we have multiple delete button ids
 			$(".deleteButton").click(function(event) {
 				setConfirmDialogMessage(event, this.title);
 			});
 	
+			// Use the CSS class here as we have multiple delete button ids
 			$(".deleteButtonEnd").click(function(event) {
 				setConfirmDialogMessage(event, this.title);
+			});
+
+			$("#exportButton").click(function() {
+				window.location.href = '/dbexport.php';
 			});
 			
 			blink('.textMessage');
@@ -357,63 +285,68 @@
 	</head>
 	<body>
 	<div id="container">
-		<div class="mainHeaderStyle dateHeaderPos">   <?php echo date("D j M, Y"); ?> </div>
+	    
+			<div class="mainHeaderStyle dateHeaderPos">   <?php echo date("D j M, Y"); ?> </div>
+			
+			<div class="mainHeaderStyle sortHeaderPos">Sort by:</div>
+			<div class="mainHeaderStyle sortFieldPos">
+				<select id="sortField" name="sortField" onchange="window.location='/displaycrate.php?sortField='+this[this.selectedIndex].value;">
+					<option value="artist, songTitle" <?php echo $sortArtistSelected      ?> > <?php echo $artistHeader      ?> </option>
+					<option value="songTitle"         <?php echo $sortSongTitleSelected   ?> > <?php echo $songTitleHeader   ?> </option>
+					<option value="recordLabel"       <?php echo $sortRecordLabelSelected ?> > <?php echo $recordLabelHeader ?> </option>
+					<option value="year"              <?php echo $sortYearSelected        ?> > <?php echo $yearHeader        ?> </option>
+					<option value="duration"          <?php echo $sortDurationSelected    ?> > <?php echo $durationHeader    ?> </option>
+					<option value="side"              <?php echo $sortSideSelected        ?> > <?php echo $sideHeader        ?> </option>
+					<option value="songFormat"        <?php echo $sortSongFormatSelected  ?> > <?php echo $songFormatHeader  ?> </option>
+					<option value="genre"             <?php echo $sortGenreSelected       ?> > <?php echo $genreHeader       ?> </option>
+					<option value="bpm"               <?php echo $sortBpmSelected         ?> > <?php echo $bpmHeader         ?> </option>
+				</select>
+			</div>
+			<div class="mainHeaderStyle sortOrderIconPos">
+				<input type="image" id="sortOrder" name="sortOrder" src="<?php echo $sortOrderIcon ?>" title="<?php echo $sortTitle ?>"
+			    />
+			</div>
+			<div class="mainHeaderStyle searchHeaderPos">Search by:</div>
+			<div class="mainHeaderStyle searchByFieldPos">
+				<select id="searchField" name="searchField" >
+					<option value=""> </option>
+					<option value="artist:<?php echo $artistHeader           ?>" <?php echo $searchArtistSelected      ?> > <?php echo $artistHeader      ?> </option>
+					<option value="songTitle:<?php echo $songTitleHeader     ?>" <?php echo $searchSongTitleSelected   ?> > <?php echo $songTitleHeader   ?> </option>
+					<option value="recordLabel:<?php echo $recordLabelHeader ?>" <?php echo $searchRecordLabelSelected ?> > <?php echo $recordLabelHeader ?> </option>
+					<option value="year:<?php echo $yearHeader               ?>" <?php echo $searchYearSelected        ?> > <?php echo $yearHeader        ?> </option>
+					<option value="duration:<?php echo $durationHeader       ?>" <?php echo $searchDurationSelected    ?> > <?php echo $durationHeader    ?> </option>
+					<option value="side:<?php echo $sideHeader               ?>" <?php echo $searchSideSelected        ?> > <?php echo $sideHeader        ?> </option>
+					<option value="songFormat:<?php echo $songFormatHeader   ?>" <?php echo $searchSongFormatSelected  ?> > <?php echo $songFormatHeader  ?> </option>
+					<option value="genre:<?php echo $genreHeader             ?>" <?php echo $searchGenreSelected       ?> > <?php echo $genreHeader       ?> </option>
+					<option value="bpm:<?php echo $bpmHeader                 ?>" <?php echo $searchBpmSelected         ?> > <?php echo $bpmHeader         ?> </option>
+				</select>
+			</div>
+			
+			<div class="mainHeaderStyle exportButtonPos">
+				<button id="exportButton" title="Export Database">Export DB</button>
+			</div>
+			
+			<div id="searchDialog">
+				<label id="searchFieldLabel"></label>
+				<input type="text" id="searchFieldValue"/>
+			</div>
 		
-		<div class="mainHeaderStyle sortHeaderPos">Sort by:</div>
-		<div class="mainHeaderStyle sortFieldPos">
-			<select id="sortField" name="sortField" onchange="window.location='/displaycrate.php?sortField='+this[this.selectedIndex].value;">
-				<option value="artist, songTitle" <?php echo $sortArtistSelected      ?> > <?php echo $artistHeader      ?> </option>
-				<option value="songTitle"         <?php echo $sortSongTitleSelected   ?> > <?php echo $songTitleHeader   ?> </option>
-				<option value="recordLabel"       <?php echo $sortRecordLabelSelected ?> > <?php echo $recordLabelHeader ?> </option>
-				<option value="year"              <?php echo $sortYearSelected        ?> > <?php echo $yearHeader        ?> </option>
-				<option value="duration"          <?php echo $sortDurationSelected    ?> > <?php echo $durationHeader    ?> </option>
-				<option value="side"              <?php echo $sortSideSelected        ?> > <?php echo $sideHeader        ?> </option>
-				<option value="songFormat"        <?php echo $sortSongFormatSelected  ?> > <?php echo $songFormatHeader  ?> </option>
-				<option value="genre"             <?php echo $sortGenreSelected       ?> > <?php echo $genreHeader       ?> </option>
-				<option value="bpm"               <?php echo $sortBpmSelected         ?> > <?php echo $bpmHeader         ?> </option>
-			</select>
-		</div>
-		<div class="mainHeaderStyle sortOrderIconPos">
-			<input type="image" id="sortOrder" name="sortOrder" src="<?php echo $sortOrderIcon ?>" title="<?php echo $sortTitle ?>"
-		    />
-		</div>
-		<div class="mainHeaderStyle searchHeaderPos">Search by:</div>
-		<div class="mainHeaderStyle searchByFieldPos">
-			<select id="searchField" name="searchField" >
-				<option value=""> </option>
-				<option value="artist:<?php echo $artistHeader           ?>" <?php echo $searchArtistSelected      ?> > <?php echo $artistHeader      ?> </option>
-				<option value="songTitle:<?php echo $songTitleHeader     ?>" <?php echo $searchSongTitleSelected   ?> > <?php echo $songTitleHeader   ?> </option>
-				<option value="recordLabel:<?php echo $recordLabelHeader ?>" <?php echo $searchRecordLabelSelected ?> > <?php echo $recordLabelHeader ?> </option>
-				<option value="year:<?php echo $yearHeader               ?>" <?php echo $searchYearSelected        ?> > <?php echo $yearHeader        ?> </option>
-				<option value="duration:<?php echo $durationHeader       ?>" <?php echo $searchDurationSelected    ?> > <?php echo $durationHeader    ?> </option>
-				<option value="side:<?php echo $sideHeader               ?>" <?php echo $searchSideSelected        ?> > <?php echo $sideHeader        ?> </option>
-				<option value="songFormat:<?php echo $songFormatHeader   ?>" <?php echo $searchSongFormatSelected  ?> > <?php echo $songFormatHeader  ?> </option>
-				<option value="genre:<?php echo $genreHeader             ?>" <?php echo $searchGenreSelected       ?> > <?php echo $genreHeader       ?> </option>
-				<option value="bpm:<?php echo $bpmHeader                 ?>" <?php echo $searchBpmSelected         ?> > <?php echo $bpmHeader         ?> </option>
-			</select>
-		</div>
-		
-		<div id="searchDialog">
-			<label id="searchFieldLabel"></label>
-			<input type="text" id="searchFieldValue"/>
-		</div>
-	
-		<div id="confirmDialog">
-			<label id="confirmDialogLabel"></label>
-		</div>
-		
-		<div class="mainHeaderStyle mainHeaderPos"> <h1>Record Crate</h1> </div>
-		<div class="mainHeaderStyle homePageLink">
-			<input type="image" name="homeButton" src="/images/home.jpg" title="Home"
-	    		onclick="location.href='menu.php'";
-		   	 />
-		</div>
-		<div class="mainHeaderStyle addSongLink">
-			<input type="image" name="addButton" src="/images/small_record.png" title="Add a new song"
-		    	onclick="<?php echo $addUrl ?>";
-		    />
-		</div>
-		<div class="mainHeaderStyle totalHeaderPos">  Total Records in Crate: <?php echo $db->totalASides + $db->totalAASides; ?> </div>
+			<div id="confirmDialog">
+				<label id="confirmDialogLabel"></label>
+			</div>
+			
+			<div class="mainHeaderStyle mainHeaderPos"> <h1>Record Crate</h1> </div>
+			<div class="mainHeaderStyle homePageLink">
+				<input type="image" name="homeButton" src="/images/home.jpg" title="Home"
+		    		onclick="location.href='menu.php'";
+			   	 />
+			</div>
+			<div class="mainHeaderStyle addSongLink">
+				<input type="image" name="addButton" src="/images/small_record.png" title="Add a new song"
+			    	onclick="<?php echo $addUrl ?>";
+			    />
+			</div>
+			<div class="mainHeaderStyle totalHeaderPos">  Total Records in Crate: <?php echo $db->totalASides + $db->totalAASides; ?> </div>
 		
 		<?php 
 			if ($processRecords) {
@@ -437,6 +370,7 @@
 	    <br><br><br><br>
 	    
 	    <form id="displayCrateForm" name="displayCrateForm" method="post" action="/crud.php">
+	    
 			<?php 
 				if ($processRecords) {
 					while ($dbRow = $q->fetch()): 

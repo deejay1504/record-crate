@@ -22,8 +22,8 @@ handlers:
 - url: /displaycrate.*
   script: displaycrate.php
 
-- url: /process.*
-  script: process.php
+- url: /dbexport.*
+  script: dbexport.php
 
 - url: /.*
   script: menu.php
