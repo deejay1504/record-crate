@@ -144,6 +144,23 @@
 		return $hh . $mm . $ss; 
     }
     
+    function displayMessage($title, $message) {
+    	echo "<script>$(document).ready(function() {var dialogButtons = dialogBox.dialog(\"option\", \"buttons\"); 
+			$.extend(dialogButtons, { 
+				Ok: function() {
+					$(\"#searchDialog\").dialog(\"close\");
+				},
+			});
+			dialogBox.dialog(\"option\", \"buttons\", dialogButtons); 
+			
+			// Hide the Cancel button as we only need an Ok button for this alert dialog
+			$(\".ui-dialog-buttonpane button:contains('Cancel')\").button().hide();
+			
+			$(\"#searchDialog\").dialog('option', 'title', '" . $title . "');
+			$(\"#searchFieldLabel\").html('" . $message . "');
+			$(\"#searchDialog\").dialog(\"open\"); });</script>";
+    }
+    
 	require_once 'dbutils.php';
 	
 	$db               = new DbUtils;  
@@ -260,21 +277,42 @@
 			
 			$duration = $duration_hh . ':' . $duration_mm . ':' . $duration_ss;
 
-			// Insert a new record
+			// Insert a new record but first check if it has already been inserted
 			if ($crudType == "I") {
-				$sql = "INSERT INTO crate (artist, songTitle, recordLabel, year, duration, side, songFormat, genre, bpm) " .
-				       "VALUES (:artist, :songTitle, :recordLabel, :year, :duration, :side, :songFormat, :genre, :bpm)";
-				
+				$sql = "SELECT count(*) AS recordCount FROM crate " .
+				       "WHERE LOWER(artist)    = :artist " .
+				       "AND   LOWER(songTitle) = :songTitle";
+
 				try {
 					$stmt = $db->dbConnection->prepare($sql);
-					$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), 
-						':year'=>$year, ':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm));
+					$stmt->execute(array(':artist'=>addslashes(strtolower($artist)), ':songTitle'=>addslashes(strtolower($songTitle))));
+					$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		
+					while ($dbRow = $stmt->fetch()): 
+	    				$recordCount = trim(htmlspecialchars($dbRow['recordCount']));
+        			endwhile;
+					
+					if ($recordCount > 0) {
+						displayMessage("Warning", $artist . ' - ' . $songTitle . " has already been added!");
+					} else {
+						$sql = "INSERT INTO crate (artist, songTitle, recordLabel, year, duration, side, songFormat, genre, bpm) " .
+						       "VALUES (:artist, :songTitle, :recordLabel, :year, :duration, :side, :songFormat, :genre, :bpm)";
 						
-					// Redirect back to the form to re-enter more data
-					header('Location: /crud.php?crudOp=I');
+						try {
+							$stmt = $db->dbConnection->prepare($sql);
+							$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), 
+								':year'=>$year, ':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm));
+								
+							// Redirect back to the form to re-enter more data
+							header('Location: /crud.php?crudOp=I');
+						} 
+						catch (PDOException $e) { 
+					   		die("Insert failure: " . $e->getMessage()); 
+						}
+					}
 				} 
 				catch (PDOException $e) { 
-			   		die("Insert failure: " . $e->getMessage()); 
+			   		die("Select artist/song title failure: " . $e->getMessage()); 
 				}
 			} else {
 				// Update an existing record
@@ -296,21 +334,8 @@
 					$stmt = $db->dbConnection->prepare($sql);
 					$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,   
 						':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm, ':songId'=>$songId));
-				
-					echo "<script>$(document).ready(function() {var dialogButtons = dialogBox.dialog(\"option\", \"buttons\"); 
-						$.extend(dialogButtons, { 
-							Ok: function() {
-								$(\"#searchDialog\").dialog(\"close\");
-							},
-						});
-						dialogBox.dialog(\"option\", \"buttons\", dialogButtons); 
-						
-						// Hide the Cancel button as we only need an Ok button for this alert dialog
-						$(\".ui-dialog-buttonpane button:contains('Cancel')\").button().hide();
-						
-						$(\"#searchDialog\").dialog('option', 'title', 'Updated!');
-						$(\"#searchFieldLabel\").html('Details successfully updated');
-						$(\"#searchDialog\").dialog(\"open\"); });</script>";
+					
+					displayMessage("Updated!", "Details successfully updated");
 					
 					$formattedDuration = formatDuration($duration_hh, $duration_mm, $duration_ss);
 				} 
@@ -438,7 +463,7 @@
 		<br>
 		
 		<div class="rowStyle">
-			<div class="saveCrudButton"><button id="submitButton">Submit</button></div> 
+			<div class="saveCrudButton"><button id="submitButton">Save</button></div> 
 			<div class="backCrudButton"><button id="backButton"  >Back</button></div>
 			<div class="songBpmDivButton"><button id="songBpmButton"></button></div>
 		</div>

@@ -71,12 +71,12 @@ container {
 }
 
 .searchHeaderPos {
-    left:530px;
+    left:510px;
 }
 
 .searchByFieldPos {
 	top:25px;
-    left:604px;
+    left:584px;
 }
 
 .searchFieldDiv {
@@ -85,7 +85,7 @@ container {
 
 .exportButtonPos {
 	top:25px;
-    left:744px;
+    left:714px;
 }
 
 .mainHeaderPos {
@@ -347,12 +347,12 @@ container {
 
 .saveCrudButton {
 	position:absolute;
-	left:775px;
+	left:781px;
 }
 
 .backCrudButton {
 	position:absolute;
-	left:882px;
+	left:877px;
 }
 
 .songBpmDivButton {

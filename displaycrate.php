@@ -110,7 +110,7 @@
 			if ($crudOp == "SEARCH" && $searchFieldValue != "null") {
 				$processQuery = true;
 		    	$sql = $sql . ' WHERE ' . $searchField . ' like ' . $likeFieldValue . 
-		            ' ORDER BY ' . $searchField . ' ' . $pages->limit;
+		            ' ORDER BY ' . $searchField . ', artist, songTitle ' . $pages->limit;
 		        $countSql = 'SELECT COUNT(*) as searchTotal FROM crate WHERE ' . $searchField . ' like ' . $likeFieldValue;
 			} else {
 				$processQuery = true;
@@ -313,7 +313,6 @@
 
 			$("#exportButton").click(function(event) {
 				exportDb(event);
-				//window.location.href = '/dbexport.php';
 			});
 			
 			blink('.textMessage');
@@ -364,7 +363,7 @@
 			</div>
 			
 			<div class="mainHeaderStyle exportButtonPos">
-				<button id="exportButton" title="Export Database">Export DB</button>
+				<button id="exportButton" title="Export Database to CSV file">Export Data</button>
 			</div>
 			
 			<div id="searchDialog">

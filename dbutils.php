@@ -14,6 +14,8 @@ class DbUtils {
   
     function DbUtils() { 
     	try {
+//	        $this->dbConnection = 
+//	        	new PDO("mysql:unix_socket=/cloudsql/record-crate-1504:my-cloudsql-instance;dbname=$this->dbname", $this->username, $this->password);
 	        $this->dbConnection = 
 	        	new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password);
     	} catch (PDOException $pe) {
