@@ -165,6 +165,7 @@
 	
 	$db               = new DbUtils;  
 	$db->countTotals("", "", "", "");
+	
 	$crudType         = (empty($_GET['crudOp'])) ? $_POST['crudOp'] : $_GET['crudOp'];
 	$crudSubmit       = $_GET['crudSubmit'];
 	$buttonPressed    = urldecode($_POST['buttonPressed']); 
@@ -179,6 +180,7 @@
 	} else {
 		$songRecord = urldecode($_POST['amendedSongRecord']); 
 		$sortField  = urldecode($_POST['sortField']); 
+		$searchUrl  = urldecode($_POST['searchUrl']); 
 	   	$deleteOk   = urldecode($_POST['deleteOk']);
 		
 		list($songId, $artist, $songTitle, $recordLabel, $year, $duration, $side, $songFormat, $genre, $bpm) =
@@ -213,20 +215,27 @@
 			header('Location: /displaycrate.php?page=' . $currentPage);
 		}
 	}	
-	 	
-   	$displayCrateHref = '/displaycrate.php?page=';
-   	if (empty($currentPage)) {
-   		$displayCrateHref = $displayCrateHref . '1';
-   	} else {
-   		$displayCrateHref = $displayCrateHref . $currentPage;
-   	}
-
-   	if (!empty($itemsPerPage)) {
-   		$displayCrateHref = $displayCrateHref . '&ipp=' . $itemsPerPage;
-   	}
-
-   	if (!empty($sortField)) {
-   		$displayCrateHref = $displayCrateHref . '&sortField=' . $sortField;
+	
+	$displayCrateHref = urldecode($_POST['displayCrateHref']); 
+   	if (empty($displayCrateHref)) {
+	   	$displayCrateHref = '/displaycrate.php?page=';
+	   	if (empty($currentPage)) {
+	   		$displayCrateHref = $displayCrateHref . '1';
+	   	} else {
+	   		$displayCrateHref = $displayCrateHref . $currentPage;
+	   	}
+	
+	   	if (!empty($itemsPerPage)) {
+	   		$displayCrateHref = $displayCrateHref . '&ipp=' . $itemsPerPage;
+	   	}
+	
+	   	if (!empty($sortField)) {
+	   		$displayCrateHref = $displayCrateHref . '&sortField=' . $sortField;
+	   	}
+	
+	  	if (!empty($searchUrl)) {
+	   		$displayCrateHref = $searchUrl;
+	   	}
    	}
 	
 	// Set the selected value for the drop down 'songFormat' field
@@ -317,6 +326,9 @@
 			} else {
 				// Update an existing record
 				$crudHeader = 'Amend a Song';
+
+				// Re-save the Href so we can go back to the correct previous page
+				$displayCrateHref = urldecode($_POST['displayCrateHref']); 
 				
 				$sql = "update crate ".
                        "set artist      = :artist,      " . 

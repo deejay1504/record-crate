@@ -108,6 +108,7 @@
 		            FROM crate';
 		         
 			if ($crudOp == "SEARCH" && $searchFieldValue != "null") {
+				$searchUrl = $_SERVER["REQUEST_URI"];
 				$processQuery = true;
 		    	$sql = $sql . ' WHERE ' . $searchField . ' like ' . $likeFieldValue . 
 		            ' ORDER BY ' . $searchField . ', artist, songTitle ' . $pages->limit;
@@ -468,7 +469,7 @@
 	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel']
 	        				.'::'.$dbRow['year'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
 		    			?>', 'deleteButton');"
-	        		"/>
+	        		/>
 				</div>
 				
 			</div>
@@ -481,12 +482,13 @@
 				} 
 			?>
 			
-	        <input type="hidden" id="deleteOk" name="deleteOk" />
+	        <input type="hidden" id="deleteOk"          name="deleteOk" />
 	        <input type="hidden" id="amendedSongRecord" name="amendedSongRecord" />
-	        <input type="hidden" id="currentPage" name="currentPage" value="<?php echo $pages->current_page; ?>"/>
-	        <input type="hidden" id="itemsPerPage" name="itemsPerPage" value="<?php echo $pages->items_per_page; ?>"/>
-	        <input type="hidden" id="sortField" name="sortField" value="<?php echo $pages->sortField; ?>"/>
-	        <input type="hidden" id="buttonPressed" name="buttonPressed"/>
+	        <input type="hidden" id="currentPage"       name="currentPage"  value="<?php echo $pages->current_page; ?>"/>
+	        <input type="hidden" id="itemsPerPage"      name="itemsPerPage" value="<?php echo $pages->items_per_page; ?>"/>
+	        <input type="hidden" id="sortField"         name="sortField"    value="<?php echo $pages->sortField; ?>"/>
+	        <input type="hidden" id="searchUrl"         name="searchUrl"    value="<?php echo $searchUrl; ?>"/>
+	        <input type="hidden" id="buttonPressed"     name="buttonPressed"/>
 		</form>
 	
 		<br><br>	
