@@ -166,21 +166,42 @@
 	$db               = new DbUtils;  
 	$db->countTotals("", "", "", "");
 	
-	$crudType         = (empty($_GET['crudOp'])) ? $_POST['crudOp'] : $_GET['crudOp'];
-	$crudSubmit       = $_GET['crudSubmit'];
-	$buttonPressed    = urldecode($_POST['buttonPressed']); 
-	$currentPage      = urldecode($_POST['currentPage']); 
-   	$itemsPerPage     = urldecode($_POST['itemsPerPage']);
+	$crudType      = (empty($_GET['crudOp'])) ? $_POST['crudOp'] : $_GET['crudOp'];
+	$sortField     = (empty($_GET['sortField'])) ? $_POST['sortField'] : $_GET['sortField'];
+	$crudSubmit    = $_GET['crudSubmit'];
+	$buttonPressed = urldecode($_POST['buttonPressed']); 
+	$currentPage   = urldecode($_POST['currentPage']); 
+   	$itemsPerPage  = urldecode($_POST['itemsPerPage']);
+	$searchUrl     = urldecode($_POST['searchUrl']); 
 
+	$displayCrateHref = urldecode($_POST['displayCrateHref']); 
+   	if (empty($displayCrateHref)) {
+	   	$displayCrateHref = '/displaycrate.php?page=';
+	   	if (empty($currentPage)) {
+	   		$displayCrateHref = $displayCrateHref . '1';
+	   	} else {
+	   		$displayCrateHref = $displayCrateHref . $currentPage;
+	   	}
+	
+	   	if (!empty($itemsPerPage)) {
+	   		$displayCrateHref = $displayCrateHref . '&ipp=' . $itemsPerPage;
+	   	}
+	
+	   	if (!empty($sortField)) {
+	   		$displayCrateHref = $displayCrateHref . '&sortField=' . $sortField;
+	   	}
+	
+	  	if (!empty($searchUrl)) {
+	   		$displayCrateHref = $searchUrl;
+	   	}
+   	}
+   	
 	if ($crudType == "I") {
 		$crudHeader        = 'Add a new Song';
 		$formattedDuration = formatDuration(0, 0, 0);
-		$sortField         = $_GET['sortField'];
 		$bpm               = 0;
 	} else {
 		$songRecord = urldecode($_POST['amendedSongRecord']); 
-		$sortField  = urldecode($_POST['sortField']); 
-		$searchUrl  = urldecode($_POST['searchUrl']); 
 	   	$deleteOk   = urldecode($_POST['deleteOk']);
 		
 		list($songId, $artist, $songTitle, $recordLabel, $year, $duration, $side, $songFormat, $genre, $bpm) =
@@ -212,31 +233,9 @@
 				}
 			} 
 			// Redirect back to the display crate php
-			header('Location: /displaycrate.php?page=' . $currentPage);
+			header('Location: ' . $displayCrateHref); 
 		}
 	}	
-	
-	$displayCrateHref = urldecode($_POST['displayCrateHref']); 
-   	if (empty($displayCrateHref)) {
-	   	$displayCrateHref = '/displaycrate.php?page=';
-	   	if (empty($currentPage)) {
-	   		$displayCrateHref = $displayCrateHref . '1';
-	   	} else {
-	   		$displayCrateHref = $displayCrateHref . $currentPage;
-	   	}
-	
-	   	if (!empty($itemsPerPage)) {
-	   		$displayCrateHref = $displayCrateHref . '&ipp=' . $itemsPerPage;
-	   	}
-	
-	   	if (!empty($sortField)) {
-	   		$displayCrateHref = $displayCrateHref . '&sortField=' . $sortField;
-	   	}
-	
-	  	if (!empty($searchUrl)) {
-	   		$displayCrateHref = $searchUrl;
-	   	}
-   	}
 	
 	// Set the selected value for the drop down 'songFormat' field
 	if (! is_null($songFormat) && ! empty($songFormat)) {
@@ -328,7 +327,7 @@
 				$crudHeader = 'Amend a Song';
 
 				// Re-save the Href so we can go back to the correct previous page
-				$displayCrateHref = urldecode($_POST['displayCrateHref']); 
+//				$displayCrateHref = urldecode($_POST['displayCrateHref']); 
 				
 				$sql = "update crate ".
                        "set artist      = :artist,      " . 
@@ -411,7 +410,7 @@
 	<form id="crudForm" name="crudForm" method="post" action="/crud.php?crudOp=<?php echo $crudType ?>">
 		<div class="rowStyle">
 			<div class="crudHeader">Artist</div>
-			<div class="crudField"><input type="text" id="artist" name="artist" size="30" maxlength="100" value="<?php echo $artist ?>"/></div>
+			<div class="crudField"><input type="text" id="artist" name="artist" size="35" maxlength="100" value="<?php echo $artist ?>"/></div>
 			<div id="artistError">
 				<label id="artistErrorLabel"></label>
 			</div>
@@ -419,12 +418,12 @@
 
 		<div class="rowStyle">
 			<div class="crudHeader">Song Title</div>
-			<div class="crudField"><input type='text' id='songTitle' name='songTitle' size="30" maxlength="100" value="<?php echo $songTitle ?>"/></div>
+			<div class="crudField"><input type='text' id='songTitle' name='songTitle' size="35" maxlength="100" value="<?php echo $songTitle ?>"/></div>
 		</div>
 
 		<div class="rowStyle">
 			<div class="crudHeader">Record Label</div>
-			<div class="crudField"><input type='text' id='recordLabel' name='recordLabel' size="30" maxlength="100" value="<?php echo $recordLabel ?>"/></div>
+			<div class="crudField"><input type='text' id='recordLabel' name='recordLabel' size="35" maxlength="100" value="<?php echo $recordLabel ?>"/></div>
 		</div>
 
 		<div class="rowStyle">
@@ -464,7 +463,7 @@
 
 		<div class="rowStyle">
 			<div class="crudHeader">Genre</div>
-			<div class="crudField"><input type='text' id='genre' name='genre' size="30" maxlength="100" value="<?php echo $genre ?>"/></div>
+			<div class="crudField"><input type='text' id='genre' name='genre' size="35" maxlength="100" value="<?php echo $genre ?>"/></div>
 		</div>
 
 		<div class="rowStyle">
