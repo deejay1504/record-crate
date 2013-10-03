@@ -106,6 +106,7 @@
 		                   genre,
 		                   bpm
 		            FROM crate';
+		            
 		         
 			if ($crudOp == "SEARCH" && $searchFieldValue != "null") {
 				$searchUrl = $_SERVER["REQUEST_URI"];
@@ -162,7 +163,6 @@
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Record Crate</title>
-	<link type="text/css" rel="stylesheet" href="/stylesheets/images/ui-icons_2e83ff_256x240.png" />
 	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 	<link type="text/css" rel="stylesheet" href="/stylesheets/jquery-ui-redmond-1.10.3.custom.css" />
 	<script src="/js/jquery-1.9.1.js"></script>

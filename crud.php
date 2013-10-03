@@ -100,6 +100,7 @@
 
 <body>
 <?php
+	
 	function createHours($id='hours_select', $selected=null) {
         /*** range of hours ***/
         $r = range(0, 12);
@@ -161,6 +162,35 @@
 			$(\"#searchDialog\").dialog(\"open\"); });</script>";
     }
     
+    function setSide($sideValue) {
+		if ($sideValue == "A Side") {
+			$sideNum = 1;
+		} else if ($sideValue == "B Side") {
+			$sideNum = 2;
+		} else if ($sideValue == "AA Side") {
+			$sideNum = 3;
+		}
+		return $sideNum;
+    }
+
+    function setSongFormat($songFormatValue) {
+		if ($songFormatValue == "7 inch") {
+			$songFormatNum = 1;
+		} else if ($songFormatValue == "10 inch") {
+			$songFormatNum = 2;
+		} else if ($songFormatValue == "12 inch") {
+			$songFormatNum = 3;
+		} else if ($songFormatValue == "LP") {
+			$songFormatNum = 4;
+		} else if ($songFormatValue == "CD") {
+			$songFormatNum = 5;
+		} else if ($songFormatValue == "MP3") {
+			$songFormatNum = 6;
+		}
+		return $songFormatNum;
+    }
+    
+	$config = require 'config.php';
 	require_once 'dbutils.php';
 	
 	$db               = new DbUtils;  
@@ -238,31 +268,15 @@
 	}	
 	
 	// Set the selected value for the drop down 'songFormat' field
-	if (! is_null($songFormat) && ! empty($songFormat)) {
-		if ($songFormat == "7 inch") {
-			$sevenSelected  = "selected";
-		} else if ($songFormat == "10 inch") {
-			$tenSelected  = "selected";
-		} else if ($songFormat == "12 inch") {
-			$twelveSelected  = "selected";
-		} else if ($songFormat == "LP") {
-			$lpSelected  = "selected";
-		} else if ($songFormat == "CD") {
-			$cdSelected  = "selected";
-		} else if ($songFormat == "MP3") {
-			$mp3Selected  = "selected";
-		}
+	if (is_null($songFormat) || empty($songFormat)) {
+		$songFormatNum = setSongFormat($config['default_song_format']);
+	} else {	
+		$songFormatNum = setSongFormat($songFormat);
 	}
 	
 	// Set the selected value for the drop down 'side' field
 	if (! is_null($side) && ! empty($side)) {
-		if ($side == "A Side") {
-			$aSideSelected  = "selected";
-		} else if ($side == "B Side") {
-			$bSideSelected  = "selected";
-		} else if ($side == "AA Side") {
-			$aaSideSelected  = "selected";
-		}
+		$sideNum = setSide($side);
 	}
 	
 	$saveDetails = urldecode($_POST['saveDetails']); 
@@ -326,9 +340,6 @@
 				// Update an existing record
 				$crudHeader = 'Amend a Song';
 
-				// Re-save the Href so we can go back to the correct previous page
-//				$displayCrateHref = urldecode($_POST['displayCrateHref']); 
-				
 				$sql = "update crate ".
                        "set artist      = :artist,      " . 
                        " 	songTitle   = :songTitle,   " .
@@ -360,31 +371,16 @@
 		    die("Could not connect to the database $dbname :" . $pe->getMessage());
 		}
 		
-		if (! is_null($songFormat) && ! empty($songFormat)) {
-			if ($songFormat == "7 inch") {
-				$sevenSelected  = "selected";
-			} else if ($songFormat == "10 inch") {
-				$tenSelected  = "selected";
-			} else if ($songFormat == "12 inch") {
-				$twelveSelected  = "selected";
-			} else if ($songFormat == "LP") {
-				$lpSelected  = "selected";
-			} else if ($songFormat == "CD") {
-				$cdSelected  = "selected";
-			} else if ($songFormat == "MP3") {
-				$mp3Selected  = "selected";
-			}
+		// Reset the Song Format and Side drop down in case the values have been amended
+		if (is_null($songFormat) || empty($songFormat)) {
+			$songFormatNum = setSongFormat($config['default_song_format']);
+		} else {	
+			$songFormatNum = setSongFormat($songFormat);
 		}
 		
 		// Set the selected value for the drop down 'side' field
 		if (! is_null($side) && ! empty($side)) {
-			if ($side == "A Side") {
-				$aSideSelected  = "selected";
-			} else if ($side == "B Side") {
-				$bSideSelected  = "selected";
-			} else if ($side == "AA Side") {
-				$aaSideSelected  = "selected";
-			}
+			$sideNum = setSide($side);
 		}
 	} 
 	
@@ -440,9 +436,9 @@
 			<div class="crudHeader">Side</div>
 			<div class="crudField">
 				<select name='side'>
-					<option value="A Side"  <?php echo $aSideSelected  ?> >A Side</option>
-					<option value="B Side"  <?php echo $bSideSelected  ?> >B Side</option>
-					<option value="AA Side" <?php echo $aaSideSelected ?> >AA Side</option>
+					<option value="A Side"  <?php if ($sideNum == 1) echo 'selected'; ?> >A Side</option>
+					<option value="B Side"  <?php if ($sideNum == 2) echo 'selected'; ?> >B Side</option>
+					<option value="AA Side" <?php if ($sideNum == 3) echo 'selected'; ?> >AA Side</option>
 				</select>
 			</div>
 		</div>
@@ -451,13 +447,13 @@
 			<div class="crudHeader">Song Format</div>
 			<div class="crudField">
 				<select name='songFormat'>
-					<option value="7 inch"  <?php echo $sevenSelected  ?> >7 inch</option>
-					<option value="10 inch" <?php echo $tenSelected    ?> >10 inch</option>
-					<option value="12 inch" <?php echo $twelveSelected ?> >12 inch</option>
-					<option value="LP"      <?php echo $lpSelected     ?> >LP</option>
-					<option value="CD"      <?php echo $cdSelected     ?> >CD</option>
-					<option value="MP3"     <?php echo $mp3Selected    ?> >MP3</option>
-					</select>
+					<option value="7 inch"  <?php if ($songFormatNum == 1) echo 'selected'; ?> >7 inch</option>
+					<option value="10 inch" <?php if ($songFormatNum == 2) echo 'selected'; ?> >10 inch</option>
+					<option value="12 inch" <?php if ($songFormatNum == 3) echo 'selected'; ?> >12 inch</option>
+					<option value="LP"      <?php if ($songFormatNum == 4) echo 'selected'; ?> >LP</option>
+					<option value="CD"      <?php if ($songFormatNum == 5) echo 'selected'; ?> >CD</option>
+					<option value="MP3"     <?php if ($songFormatNum == 6) echo 'selected'; ?> >MP3</option>
+				</select>
 			</div>
 		</div>
 
