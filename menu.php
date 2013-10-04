@@ -42,7 +42,6 @@
 		$artist      = trim(htmlspecialchars(stripslashes($dbRow['artist'])));
 		$songTitle   = trim(htmlspecialchars(stripslashes($dbRow['songTitle'])));
 		$recordLabel = trim(htmlspecialchars(stripslashes($dbRow['recordLabel'])));
-		$year        = trim(htmlspecialchars(stripslashes($dbRow['year'])));
 		$songFormat  = trim(htmlspecialchars(stripslashes($dbRow['songFormat'])));
 		$genre       = trim(htmlspecialchars(stripslashes($dbRow['genre'])));
 		$info        = '<b>' . $artist . ', ' . $songTitle . ', ' . $recordLabel . ', ' 

@@ -107,7 +107,6 @@
 		                   bpm
 		            FROM crate';
 		            
-		         
 			if ($crudOp == "SEARCH" && $searchFieldValue != "null") {
 				$searchUrl = $_SERVER["REQUEST_URI"];
 				$processQuery = true;

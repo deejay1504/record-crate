@@ -193,7 +193,7 @@
 	$config = require 'config.php';
 	require_once 'dbutils.php';
 	
-	$db               = new DbUtils;  
+	$db            = new DbUtils;  
 	$db->countTotals("", "", "", "");
 	
 	$crudType      = (empty($_GET['crudOp'])) ? $_POST['crudOp'] : $_GET['crudOp'];
