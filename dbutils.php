@@ -102,6 +102,30 @@ class DbUtils {
         $this->totalAASides = ($this->totalAASides / 2);
     }
     
+    function checkDuplicateRecord($artist, $songTitle, $recordLabel) {
+    	$sql = "SELECT count(*) AS recordCount FROM crate     " .
+				       "WHERE LOWER(artist)      = :artist    " .
+				       "AND   LOWER(songTitle)   = :songTitle " .
+				       "AND   LOWER(recordLabel) = :recordLabel";
+
+		try {
+			$stmt = $this->dbConnection->prepare($sql);
+			$stmt->execute(array(':artist'=>addslashes(strtolower($artist)), 
+				':songTitle'=>addslashes(strtolower($songTitle)), 
+				':recordLabel'=>addslashes(strtolower($recordLabel))));
+			$stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+			while ($dbRow = $stmt->fetch()): 
+				$recordCount = trim(htmlspecialchars($dbRow['recordCount']));
+			endwhile;
+			
+			return $recordCount;
+		} 
+		catch (PDOException $e) { 
+	   		die("Select by artist/song title/record label failed: " . $e->getMessage()); 
+		}
+    }
+    
     function dbExport($exportPath, $exportName) {
     	$sql = "select songId, artist, songTitle, recordLabel, year, duration, side, songFormat, genre, bpm from crate";
 					

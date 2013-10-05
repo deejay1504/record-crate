@@ -301,72 +301,61 @@
 
 			// Insert a new record but first check if it has already been inserted
 			if ($crudType == "I") {
-				$sql = "SELECT count(*) AS recordCount FROM crate " .
-				       "WHERE LOWER(artist)    = :artist " .
-				       "AND   LOWER(songTitle) = :songTitle";
+				$recordCount = $db->checkDuplicateRecord($artist, $songTitle, $recordLabel);
 
-				try {
-					$stmt = $db->dbConnection->prepare($sql);
-					$stmt->execute(array(':artist'=>addslashes(strtolower($artist)), ':songTitle'=>addslashes(strtolower($songTitle))));
-					$stmt->setFetchMode(PDO::FETCH_ASSOC);
-		
-					while ($dbRow = $stmt->fetch()): 
-	    				$recordCount = trim(htmlspecialchars($dbRow['recordCount']));
-        			endwhile;
+				if ($recordCount > 0) {
+					displayMessage("Warning", '<b>' . $artist . ' - ' . $songTitle . ' - ' . $recordLabel . "</b> has already been added!");
+				} else {
+					$sql = "INSERT INTO crate (artist, songTitle, recordLabel, year, duration, side, songFormat, genre, bpm) " .
+					       "VALUES (:artist, :songTitle, :recordLabel, :year, :duration, :side, :songFormat, :genre, :bpm)";
 					
-					if ($recordCount > 0) {
-						displayMessage("Warning", $artist . ' - ' . $songTitle . " has already been added!");
-					} else {
-						$sql = "INSERT INTO crate (artist, songTitle, recordLabel, year, duration, side, songFormat, genre, bpm) " .
-						       "VALUES (:artist, :songTitle, :recordLabel, :year, :duration, :side, :songFormat, :genre, :bpm)";
-						
-						try {
-							$stmt = $db->dbConnection->prepare($sql);
-							$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), 
-								':year'=>$year, ':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm));
-								
-							// Redirect back to the form to re-enter more data
-							header('Location: /crud.php?crudOp=I');
-						} 
-						catch (PDOException $e) { 
-					   		die("Insert failure: " . $e->getMessage()); 
-						}
+					try {
+						$stmt = $db->dbConnection->prepare($sql);
+						$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), 
+							':year'=>$year, ':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm));
+							
+						// Redirect back to the form to re-enter more data
+						header('Location: /crud.php?crudOp=I');
+					} 
+					catch (PDOException $e) { 
+				   		die("Insert failure: " . $e->getMessage()); 
 					}
-				} 
-				catch (PDOException $e) { 
-			   		die("Select artist/song title failure: " . $e->getMessage()); 
 				}
 			} else {
-				// Update an existing record
-				$crudHeader = 'Amend a Song';
+				// Update an existing record but first check if it already exists
+				$recordCount = $db->checkDuplicateRecord($artist, $songTitle, $recordLabel);
 
-				$sql = "update crate ".
-                       "set artist      = :artist,      " . 
-                       " 	songTitle   = :songTitle,   " .
-                       " 	recordLabel = :recordLabel, " .
-                       "    year        = :year,        " .
-                       "    duration	= :duration,    " .
-                       "    side		= :side,        " .
-                       "    songFormat  = :songFormat,  " .
-                       "    genre       = :genre,       " .
-                       "    bpm         = :bpm          " .
-                       "where songId    = :songId";
-                       
-				try {
-					$stmt = $db->dbConnection->prepare($sql);
-					$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,   
-						':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm, ':songId'=>$songId));
-					
-					displayMessage("Updated!", "Details successfully updated");
-					
-					$formattedDuration = formatDuration($duration_hh, $duration_mm, $duration_ss);
-				} 
-				catch (PDOException $e) { 
-			   		die("Update failure: " . $e->getMessage()); 
+				if ($recordCount > 0) {
+					displayMessage("Warning", '<b>' . $artist . ' - ' . $songTitle . ' - ' . $recordLabel . " </b>has already been added!");
+				} else {
+					$crudHeader = 'Amend a Song';
+	
+					$sql = "update crate ".
+	                       "set artist      = :artist,      " . 
+	                       " 	songTitle   = :songTitle,   " .
+	                       " 	recordLabel = :recordLabel, " .
+	                       "    year        = :year,        " .
+	                       "    duration	= :duration,    " .
+	                       "    side		= :side,        " .
+	                       "    songFormat  = :songFormat,  " .
+	                       "    genre       = :genre,       " .
+	                       "    bpm         = :bpm          " .
+	                       "where songId    = :songId";
+	                       
+					try {
+						$stmt = $db->dbConnection->prepare($sql);
+						$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,   
+							':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm, ':songId'=>$songId));
+						
+						displayMessage("Updated!", "Details successfully updated");
+						
+						$formattedDuration = formatDuration($duration_hh, $duration_mm, $duration_ss);
+					} 
+					catch (PDOException $e) { 
+				   		die("Update failure: " . $e->getMessage()); 
+					}
 				}
 			}
-			
-		
 		} catch (PDOException $pe) {
 		    die("Could not connect to the database $dbname :" . $pe->getMessage());
 		}
