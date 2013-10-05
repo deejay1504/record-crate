@@ -322,38 +322,32 @@
 					}
 				}
 			} else {
-				// Update an existing record but first check if it already exists
-				$recordCount = $db->checkDuplicateRecord($artist, $songTitle, $recordLabel);
+				// Update an existing record
+				$crudHeader = 'Amend a Song';
 
-				if ($recordCount > 0) {
-					displayMessage("Warning", '<b>' . $artist . ' - ' . $songTitle . ' - ' . $recordLabel . " </b>has already been added!");
-				} else {
-					$crudHeader = 'Amend a Song';
-	
-					$sql = "update crate ".
-	                       "set artist      = :artist,      " . 
-	                       " 	songTitle   = :songTitle,   " .
-	                       " 	recordLabel = :recordLabel, " .
-	                       "    year        = :year,        " .
-	                       "    duration	= :duration,    " .
-	                       "    side		= :side,        " .
-	                       "    songFormat  = :songFormat,  " .
-	                       "    genre       = :genre,       " .
-	                       "    bpm         = :bpm          " .
-	                       "where songId    = :songId";
-	                       
-					try {
-						$stmt = $db->dbConnection->prepare($sql);
-						$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,   
-							':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm, ':songId'=>$songId));
-						
-						displayMessage("Updated!", "Details successfully updated");
-						
-						$formattedDuration = formatDuration($duration_hh, $duration_mm, $duration_ss);
-					} 
-					catch (PDOException $e) { 
-				   		die("Update failure: " . $e->getMessage()); 
-					}
+				$sql = "update crate ".
+                       "set artist      = :artist,      " . 
+                       " 	songTitle   = :songTitle,   " .
+                       " 	recordLabel = :recordLabel, " .
+                       "    year        = :year,        " .
+                       "    duration	= :duration,    " .
+                       "    side		= :side,        " .
+                       "    songFormat  = :songFormat,  " .
+                       "    genre       = :genre,       " .
+                       "    bpm         = :bpm          " .
+                       "where songId    = :songId";
+                       
+				try {
+					$stmt = $db->dbConnection->prepare($sql);
+					$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,   
+						':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm, ':songId'=>$songId));
+					
+					displayMessage("Updated!", "Details successfully updated");
+					
+					$formattedDuration = formatDuration($duration_hh, $duration_mm, $duration_ss);
+				} 
+				catch (PDOException $e) { 
+			   		die("Update failure: " . $e->getMessage()); 
 				}
 			}
 		} catch (PDOException $pe) {
