@@ -94,6 +94,24 @@
 		
 		$("#artist").focus();
 		
+		$("#inputChanged").val("false");
+		
+		$("#artist").change(function() {
+  			$("#inputChanged").val("true");
+		});
+
+		$("#songTitle").change(function() {
+  			$("#inputChanged").val("true");
+		});
+
+		$("#recordLabel").change(function() {
+  			$("#inputChanged").val("true");
+		});
+
+		$("#songFormat").change(function() {
+  			$("#inputChanged").val("true");
+		});
+		
 	});
 </script>
 </head>
@@ -158,7 +176,7 @@
 			$(\".ui-dialog-buttonpane button:contains('Cancel')\").button().hide();
 			
 			$(\"#searchDialog\").dialog('option', 'title', '" . $title . "');
-			$(\"#searchFieldLabel\").html('" . $message . "');
+			$(\"#searchFieldLabel\").html('" . addslashes($message) . "');
 			$(\"#searchDialog\").dialog(\"open\"); });</script>";
     }
     
@@ -246,6 +264,7 @@
 		
 		if ($buttonPressed == 'editButton') {
 			$crudHeader = 'Amend a Song';
+			$previousRecordLabel = $recordLabel; 
 		}
 	
 		if ($buttonPressed == 'deleteButton') {
@@ -296,12 +315,13 @@
 			$songFormat  = urldecode($_POST['songFormat']); 
 			$genre       = urldecode($_POST['genre']); 
 			$bpm         = urldecode($_POST['bpm']); 
+			$inputChanged = urldecode($_POST['inputChanged']); 
 			
 			$duration = $duration_hh . ':' . $duration_mm . ':' . $duration_ss;
 
 			// Insert a new record but first check if it has already been inserted
 			if ($crudType == "I") {
-				$recordCount = $db->checkDuplicateRecord($artist, $songTitle, $recordLabel);
+				$recordCount = $db->checkDuplicateRecord($artist, $songTitle, $recordLabel, $songFormat);
 
 				if ($recordCount > 0) {
 					displayMessage("Warning", '<b>' . $artist . ' - ' . $songTitle . ' - ' . $recordLabel . "</b> has already been added!");
@@ -322,32 +342,39 @@
 					}
 				}
 			} else {
-				// Update an existing record
+				// Update an existing record first check if it already exists if the artist, song title or record label has been changed
 				$crudHeader = 'Amend a Song';
-
-				$sql = "update crate ".
-                       "set artist      = :artist,      " . 
-                       " 	songTitle   = :songTitle,   " .
-                       " 	recordLabel = :recordLabel, " .
-                       "    year        = :year,        " .
-                       "    duration	= :duration,    " .
-                       "    side		= :side,        " .
-                       "    songFormat  = :songFormat,  " .
-                       "    genre       = :genre,       " .
-                       "    bpm         = :bpm          " .
-                       "where songId    = :songId";
-                       
-				try {
-					$stmt = $db->dbConnection->prepare($sql);
-					$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,   
-						':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm, ':songId'=>$songId));
-					
-					displayMessage("Updated!", "Details successfully updated");
-					
-					$formattedDuration = formatDuration($duration_hh, $duration_mm, $duration_ss);
-				} 
-				catch (PDOException $e) { 
-			   		die("Update failure: " . $e->getMessage()); 
+				
+				$recordCount = ($inputChanged == "false") ? 0 : $db->checkDuplicateRecord($artist, $songTitle, $recordLabel, $songFormat);
+				
+				if ($recordCount > 0) {
+					displayMessage("Warning", '<b>' . $artist . ' - ' . $songTitle . ' - ' . $recordLabel . "</b> has already been added!");
+					$recordLabel = urldecode($_POST['previousRecordLabel']);
+				} else {
+					$sql = "update crate ".
+	                       "set artist      = :artist,      " . 
+	                       " 	songTitle   = :songTitle,   " .
+	                       " 	recordLabel = :recordLabel, " .
+	                       "    year        = :year,        " .
+	                       "    duration	= :duration,    " .
+	                       "    side		= :side,        " .
+	                       "    songFormat  = :songFormat,  " .
+	                       "    genre       = :genre,       " .
+	                       "    bpm         = :bpm          " .
+	                       "where songId    = :songId";
+	                       
+					try {
+						$stmt = $db->dbConnection->prepare($sql);
+						$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,   
+							':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm, ':songId'=>$songId));
+						
+						displayMessage("Updated!", "Details successfully updated");
+						
+						$formattedDuration = formatDuration($duration_hh, $duration_mm, $duration_ss);
+					} 
+					catch (PDOException $e) { 
+				   		die("Update failure: " . $e->getMessage()); 
+					}
 				}
 			}
 		} catch (PDOException $pe) {
@@ -464,6 +491,8 @@
 		<input type="hidden" id="itemsPerPage" name="itemsPerPage" value="<?php echo $itemsPerPage; ?>"/>
 		<input type="hidden" id="sortField" name="sortField" value="<?php echo $sortField; ?>"/>
 		<input type="hidden" id="crudOp" name="crudOp" value="<?php echo $crudType; ?>"/>
+		<input type="hidden" id="previousRecordLabel" name="previousRecordLabel" value="<?php echo $previousRecordLabel; ?>"/>
+		<input type="hidden" id="inputChanged" name="inputChanged"/>
 		<input type="hidden" id="saveDetails" name="saveDetails"/>
 	</form>
 	

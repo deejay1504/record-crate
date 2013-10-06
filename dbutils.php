@@ -102,17 +102,19 @@ class DbUtils {
         $this->totalAASides = ($this->totalAASides / 2);
     }
     
-    function checkDuplicateRecord($artist, $songTitle, $recordLabel) {
-    	$sql = "SELECT count(*) AS recordCount FROM crate     " .
-				       "WHERE LOWER(artist)      = :artist    " .
-				       "AND   LOWER(songTitle)   = :songTitle " .
-				       "AND   LOWER(recordLabel) = :recordLabel";
+    function checkDuplicateRecord($artist, $songTitle, $recordLabel, $songFormat) {
+    	$sql = "SELECT count(*) AS recordCount FROM crate       "  .
+				       "WHERE LOWER(artist)      = :artist      "  .
+				       "AND   LOWER(songTitle)   = :songTitle   "  .
+				       "AND   LOWER(recordLabel) = :recordLabel " . 
+				       "AND   LOWER(songFormat)  = :songFormat";
 
 		try {
 			$stmt = $this->dbConnection->prepare($sql);
 			$stmt->execute(array(':artist'=>addslashes(strtolower($artist)), 
 				':songTitle'=>addslashes(strtolower($songTitle)), 
-				':recordLabel'=>addslashes(strtolower($recordLabel))));
+				':recordLabel'=>addslashes(strtolower($recordLabel)),
+				':songFormat'=>addslashes(strtolower($songFormat))));
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 
 			while ($dbRow = $stmt->fetch()): 
