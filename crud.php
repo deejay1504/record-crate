@@ -471,7 +471,7 @@
 			<div class="crudHeader">Genre</div>
 			<div class="crudField"><input type='text' id='genre' name='genre' size="35" maxlength="100" value="<?php echo $genre ?>"/></div>
 		</div>
-
+		
 		<div class="rowStyle">
 			<div class="crudHeader">BPM</div>
 			<div class="crudField"><input type='text' id='bpm' name='bpm' size="8" maxlength="4" value="<?php echo $bpm ?>"/></div>
