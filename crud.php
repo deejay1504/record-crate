@@ -43,6 +43,10 @@
 				errorText = errorText + 'Year field must be numeric<br>';
 				makeSearch = false;
 			}
+			if ($("#numberOfCopies").val() == '' || isNaN($("#numberOfCopies").val())) {
+				errorText = errorText + 'Copies field must be numeric<br>';
+				makeSearch = false;
+			}
 			if (makeSearch) {
 				$("#saveDetails").val("saveDetails");
 				$("#crudForm").submit();
@@ -248,12 +252,13 @@
 		$crudHeader        = 'Add a new Song';
 		$formattedDuration = formatDuration(0, 0, 0);
 		$bpm               = 0;
+		$numberOfCopies    = 1;
 	} else {
 		$songRecord = urldecode($_POST['amendedSongRecord']); 
 	   	$deleteOk   = urldecode($_POST['deleteOk']);
 		
-		list($songId, $artist, $songTitle, $recordLabel, $year, $duration, $side, $songFormat, $genre, $bpm) =
-    		split("::", $songRecord, 10);
+		list($songId, $artist, $songTitle, $recordLabel, $year, $numberOfCopies, $duration, $side, $songFormat, $genre, $bpm) =
+    		split("::", $songRecord, 11);
     		
 		if (! is_null($duration) && ! empty($duration)) {
 			list($duration_hh, $duration_mm, $duration_ss) = split(":", $duration, 3);
@@ -303,19 +308,20 @@
 	if (! is_null($saveDetails) && ! empty($saveDetails) && $saveDetails == 'saveDetails') {
 		try {
 
-			$songId      = urldecode($_POST['songId']); 
-			$artist      = urldecode($_POST['artist']); 
-			$songTitle   = urldecode($_POST['songTitle']); 
-			$recordLabel = urldecode($_POST['recordLabel']); 
-			$year        = urldecode($_POST['year']); 
-			$duration_hh = urldecode($_POST['duration_hh']); 
-			$duration_mm = urldecode($_POST['duration_mm']); 
-			$duration_ss = urldecode($_POST['duration_ss']); 
-			$side 		 = urldecode($_POST['side']); 
-			$songFormat  = urldecode($_POST['songFormat']); 
-			$genre       = urldecode($_POST['genre']); 
-			$bpm         = urldecode($_POST['bpm']); 
-			$inputChanged = urldecode($_POST['inputChanged']); 
+			$songId         = urldecode($_POST['songId']); 
+			$artist         = urldecode($_POST['artist']); 
+			$songTitle      = urldecode($_POST['songTitle']); 
+			$recordLabel    = urldecode($_POST['recordLabel']); 
+			$year           = urldecode($_POST['year']); 
+			$numberOfCopies = urldecode($_POST['numberOfCopies']); 
+			$duration_hh    = urldecode($_POST['duration_hh']); 
+			$duration_mm    = urldecode($_POST['duration_mm']); 
+			$duration_ss    = urldecode($_POST['duration_ss']); 
+			$side 		    = urldecode($_POST['side']); 
+			$songFormat     = urldecode($_POST['songFormat']); 
+			$genre          = urldecode($_POST['genre']); 
+			$bpm            = urldecode($_POST['bpm']); 
+			$inputChanged   = urldecode($_POST['inputChanged']); 
 			
 			$duration = $duration_hh . ':' . $duration_mm . ':' . $duration_ss;
 
@@ -326,13 +332,13 @@
 				if ($recordCount > 0) {
 					displayMessage("Warning", '<b>' . $artist . ' - ' . $songTitle . ' - ' . $recordLabel . "</b> has already been added!");
 				} else {
-					$sql = "INSERT INTO crate (artist, songTitle, recordLabel, year, duration, side, songFormat, genre, bpm) " .
-					       "VALUES (:artist, :songTitle, :recordLabel, :year, :duration, :side, :songFormat, :genre, :bpm)";
+					$sql = "INSERT INTO crate (artist, songTitle, recordLabel, year, numberOfCopies, duration, side, songFormat, genre, bpm) " .
+					       "VALUES (:artist, :songTitle, :recordLabel, :year, :numberOfCopies, :duration, :side, :songFormat, :genre, :bpm)";
 					
 					try {
 						$stmt = $db->dbConnection->prepare($sql);
-						$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), 
-							':year'=>$year, ':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm));
+						$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,  
+							':numberOfCopies'=>$numberOfCopies, ':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm));
 							
 						// Redirect back to the form to re-enter more data
 						header('Location: /crud.php?crudOp=I');
@@ -352,21 +358,22 @@
 					$recordLabel = urldecode($_POST['previousRecordLabel']);
 				} else {
 					$sql = "update crate ".
-	                       "set artist      = :artist,      " . 
-	                       " 	songTitle   = :songTitle,   " .
-	                       " 	recordLabel = :recordLabel, " .
-	                       "    year        = :year,        " .
-	                       "    duration	= :duration,    " .
-	                       "    side		= :side,        " .
-	                       "    songFormat  = :songFormat,  " .
-	                       "    genre       = :genre,       " .
-	                       "    bpm         = :bpm          " .
-	                       "where songId    = :songId";
+	                       "set artist         = :artist,         " . 
+	                       " 	songTitle      = :songTitle,      " .
+	                       " 	recordLabel    = :recordLabel,    " .
+	                       "    year           = :year,           " .
+	                       "    numberOfCopies = :numberOfCopies, " .
+	                       "    duration       = :duration,       " .
+	                       "    side		   = :side,           " .
+	                       "    songFormat     = :songFormat,     " .
+	                       "    genre          = :genre,          " .
+	                       "    bpm            = :bpm             " .
+	                       "where songId       = :songId";
 	                       
 					try {
 						$stmt = $db->dbConnection->prepare($sql);
 						$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,   
-							':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm, ':songId'=>$songId));
+							':numberOfCopies'=>$numberOfCopies, ':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm, ':songId'=>$songId));
 						
 						displayMessage("Updated!", "Details successfully updated");
 						
@@ -438,6 +445,16 @@
 		</div>
 
 		<div class="rowStyle">
+			<div class="crudHeader">Genre</div>
+			<div class="crudField"><input type='text' id='genre' name='genre' size="35" maxlength="100" value="<?php echo $genre ?>"/></div>
+		</div>
+		
+		<div class="rowStyle">
+			<div class="crudHeader">Number Of Copies</div>
+			<div class="crudField"><input type='text' id='numberOfCopies' name='numberOfCopies' size="8" maxlength="2" value="<?php echo $numberOfCopies ?>"/></div>
+		</div>
+
+		<div class="rowStyle">
 			<div class="crudHeader">Duration (hh:mm:ss)</div>
 			<div id="duration" class="crudField"><?php echo $formattedDuration; ?></div>
 		</div>
@@ -467,11 +484,6 @@
 			</div>
 		</div>
 
-		<div class="rowStyle">
-			<div class="crudHeader">Genre</div>
-			<div class="crudField"><input type='text' id='genre' name='genre' size="35" maxlength="100" value="<?php echo $genre ?>"/></div>
-		</div>
-		
 		<div class="rowStyle">
 			<div class="crudHeader">BPM</div>
 			<div class="crudField"><input type='text' id='bpm' name='bpm' size="8" maxlength="4" value="<?php echo $bpm ?>"/></div>

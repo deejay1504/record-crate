@@ -3,15 +3,16 @@
 		require_once 'dbutils.php';
 		 
 		try {
-			$artistHeader      = "Artist";
-			$songTitleHeader   = "Song Title";
-			$recordLabelHeader = "Record Label";
-			$yearHeader        = "Year";
-			$durationHeader    = "Duration";
-			$sideHeader        = "Side";
-			$songFormatHeader  = "Song Format";
-			$genreHeader       = "Genre";
-			$bpmHeader         = "BPM";
+			$artistHeader         = "Artist";
+			$songTitleHeader      = "Song Title";
+			$recordLabelHeader    = "Record Label";
+			$yearHeader           = "Year";
+			$numberOfCopiesHeader = "Copies";
+			$durationHeader       = "Duration";
+			$sideHeader           = "Side";
+			$songFormatHeader     = "Song Format";
+			$genreHeader          = "Genre";
+			$bpmHeader            = "BPM";
 			
 			$sortField = (empty($_GET['sortField'])) ? "artist, songTitle" : $_GET['sortField']; 
 	
@@ -24,7 +25,9 @@
 			} else if ($sortField == "year") {
 				$sortYearSelected  = "selected";
 			} else if ($sortField == "duration") {
-				$sortDurationSelected  = "selected";
+				$sortDurationSelected = "selected";
+			} else if ($sortField == "numberOfCopies") {
+				$numberOfCopiesSelected = "selected";
 			} else if ($sortField == "side") {
 				$sortSideSelected  = "selected";
 			} else if ($sortField == "songFormat") {
@@ -47,6 +50,8 @@
 				$searchYearSelected  = "selected";
 			} else if ($searchField == "Duration") {
 				$searchDurationSelected  = "selected";
+			} else if ($searchField == "Copies") {
+				$searchNumberOfCopiesSelected  = "selected";
 			} else if ($searchField == "Side") {
 				$searchSideSelected  = "selected";
 			} else if ($searchField == "Song Format") {
@@ -100,6 +105,7 @@
 		                   songTitle, 
 		                   recordLabel,
 		                   year, 
+		                   numberOfCopies, 
 		                   duration, 
 		                   side,
 		                   songFormat,
@@ -198,7 +204,7 @@
 					alert(searchFieldName + ' cannot be empty');
 				} else {
 					makeSearch = true;
-					if ((searchFieldName == 'BPM' || searchFieldName == 'Year') && isNaN(searchFieldValue)) {
+					if ((searchFieldName == 'BPM' || searchFieldName == 'Year' || searchFieldName == 'Copies') && isNaN(searchFieldValue)) {
 						alert(searchFieldName + ' must be numeric');
 						makeSearch = false;
 					}
@@ -331,15 +337,16 @@
 			<div class="mainHeaderStyle sortHeaderPos">Sort by:</div>
 			<div class="mainHeaderStyle sortFieldPos">
 				<select id="sortField" name="sortField" onchange="window.location='/displaycrate.php?sortField='+this[this.selectedIndex].value;">
-					<option value="artist, songTitle" <?php echo $sortArtistSelected      ?> > <?php echo $artistHeader      ?> </option>
-					<option value="songTitle"         <?php echo $sortSongTitleSelected   ?> > <?php echo $songTitleHeader   ?> </option>
-					<option value="recordLabel"       <?php echo $sortRecordLabelSelected ?> > <?php echo $recordLabelHeader ?> </option>
-					<option value="year"              <?php echo $sortYearSelected        ?> > <?php echo $yearHeader        ?> </option>
-					<option value="duration"          <?php echo $sortDurationSelected    ?> > <?php echo $durationHeader    ?> </option>
-					<option value="side"              <?php echo $sortSideSelected        ?> > <?php echo $sideHeader        ?> </option>
-					<option value="songFormat"        <?php echo $sortSongFormatSelected  ?> > <?php echo $songFormatHeader  ?> </option>
-					<option value="genre"             <?php echo $sortGenreSelected       ?> > <?php echo $genreHeader       ?> </option>
-					<option value="bpm"               <?php echo $sortBpmSelected         ?> > <?php echo $bpmHeader         ?> </option>
+					<option value="artist, songTitle" <?php echo $sortArtistSelected      ?> > <?php echo $artistHeader         ?> </option>
+					<option value="songTitle"         <?php echo $sortSongTitleSelected   ?> > <?php echo $songTitleHeader      ?> </option>
+					<option value="recordLabel"       <?php echo $sortRecordLabelSelected ?> > <?php echo $recordLabelHeader    ?> </option>
+					<option value="year"              <?php echo $sortYearSelected        ?> > <?php echo $yearHeader           ?> </option>
+					<option value="numberOfCopies"    <?php echo $numberOfCopiesSelected  ?> > <?php echo $numberOfCopiesHeader ?> </option>
+					<option value="duration"          <?php echo $sortDurationSelected    ?> > <?php echo $durationHeader       ?> </option>
+					<option value="side"              <?php echo $sortSideSelected        ?> > <?php echo $sideHeader           ?> </option>
+					<option value="songFormat"        <?php echo $sortSongFormatSelected  ?> > <?php echo $songFormatHeader     ?> </option>
+					<option value="genre"             <?php echo $sortGenreSelected       ?> > <?php echo $genreHeader          ?> </option>
+					<option value="bpm"               <?php echo $sortBpmSelected         ?> > <?php echo $bpmHeader            ?> </option>
 				</select>
 			</div>
 			<div class="mainHeaderStyle sortOrderIconPos">
@@ -350,15 +357,16 @@
 			<div class="mainHeaderStyle searchByFieldPos">
 				<select id="searchField" name="searchField" >
 					<option value=""> </option>
-					<option value="artist:<?php echo $artistHeader           ?>" <?php echo $searchArtistSelected      ?> > <?php echo $artistHeader      ?> </option>
-					<option value="songTitle:<?php echo $songTitleHeader     ?>" <?php echo $searchSongTitleSelected   ?> > <?php echo $songTitleHeader   ?> </option>
-					<option value="recordLabel:<?php echo $recordLabelHeader ?>" <?php echo $searchRecordLabelSelected ?> > <?php echo $recordLabelHeader ?> </option>
-					<option value="year:<?php echo $yearHeader               ?>" <?php echo $searchYearSelected        ?> > <?php echo $yearHeader        ?> </option>
-					<option value="duration:<?php echo $durationHeader       ?>" <?php echo $searchDurationSelected    ?> > <?php echo $durationHeader    ?> </option>
-					<option value="side:<?php echo $sideHeader               ?>" <?php echo $searchSideSelected        ?> > <?php echo $sideHeader        ?> </option>
-					<option value="songFormat:<?php echo $songFormatHeader   ?>" <?php echo $searchSongFormatSelected  ?> > <?php echo $songFormatHeader  ?> </option>
-					<option value="genre:<?php echo $genreHeader             ?>" <?php echo $searchGenreSelected       ?> > <?php echo $genreHeader       ?> </option>
-					<option value="bpm:<?php echo $bpmHeader                 ?>" <?php echo $searchBpmSelected         ?> > <?php echo $bpmHeader         ?> </option>
+					<option value="artist:<?php echo $artistHeader                 ?>" <?php echo $searchArtistSelected      ?> > <?php echo $artistHeader         ?> </option>
+					<option value="songTitle:<?php echo $songTitleHeader           ?>" <?php echo $searchSongTitleSelected   ?> > <?php echo $songTitleHeader      ?> </option>
+					<option value="recordLabel:<?php echo $recordLabelHeader       ?>" <?php echo $searchRecordLabelSelected ?> > <?php echo $recordLabelHeader    ?> </option>
+					<option value="year:<?php echo $yearHeader                     ?>" <?php echo $searchYearSelected        ?> > <?php echo $yearHeader           ?> </option>
+					<option value="numberOfCopies:<?php echo $numberOfCopiesHeader ?>" <?php echo $numberOfCopiesSelected    ?> > <?php echo $numberOfCopiesHeader ?> </option>
+					<option value="duration:<?php echo $durationHeader             ?>" <?php echo $searchDurationSelected    ?> > <?php echo $durationHeader       ?> </option>
+					<option value="side:<?php echo $sideHeader                     ?>" <?php echo $searchSideSelected        ?> > <?php echo $sideHeader           ?> </option>
+					<option value="songFormat:<?php echo $songFormatHeader         ?>" <?php echo $searchSongFormatSelected  ?> > <?php echo $songFormatHeader     ?> </option>
+					<option value="genre:<?php echo $genreHeader                   ?>" <?php echo $searchGenreSelected       ?> > <?php echo $genreHeader          ?> </option>
+					<option value="bpm:<?php echo $bpmHeader                       ?>" <?php echo $searchBpmSelected         ?> > <?php echo $bpmHeader            ?> </option>
 				</select>
 			</div>
 			
@@ -395,15 +403,16 @@
 				<div class="mainHeaderStyle bSideHeaderPos">  <?php echo $db->totalBSides;  ?> B Sides </div>
 				<div class="mainHeaderStyle aaSideHeaderPos"> <?php echo $db->totalAASides; ?> AA Sides </div>
 				
-			    <div class="headerStyle artistHeaderPos">      <?php echo $artistHeader      ?> </div>
-			    <div class="headerStyle songTitleHeaderPos">   <?php echo $songTitleHeader   ?> </div>
-			    <div class="headerStyle recordLabelHeaderPos"> <?php echo $recordLabelHeader ?> </div>
-			    <div class="headerStyle yearHeaderPos">        <?php echo $yearHeader        ?> </div>
-			    <div class="headerStyle durationHeaderPos">    <?php echo $durationHeader    ?> </div>
-			    <div class="headerStyle sideHeaderPos">        <?php echo $sideHeader        ?> </div>
-			    <div class="headerStyle songFormatHeaderPos">  <?php echo $songFormatHeader  ?> </div>
-			    <div class="headerStyle genreHeaderPos">       <?php echo $genreHeader       ?> </div>
-			    <div class="headerStyle bpmHeaderPos">	       <?php echo $bpmHeader         ?> </div>
+			    <div class="headerStyle artistHeaderPos">         <?php echo $artistHeader         ?> </div>
+			    <div class="headerStyle songTitleHeaderPos">      <?php echo $songTitleHeader      ?> </div>
+			    <div class="headerStyle recordLabelHeaderPos">    <?php echo $recordLabelHeader    ?> </div>
+			    <div class="headerStyle yearHeaderPos">           <?php echo $yearHeader           ?> </div>
+			    <div class="headerStyle numberOfCopiesHeaderPos"> <?php echo $numberOfCopiesHeader ?> </div>
+			    <div class="headerStyle durationHeaderPos">       <?php echo $durationHeader       ?> </div>
+			    <div class="headerStyle sideHeaderPos">           <?php echo $sideHeader           ?> </div>
+			    <div class="headerStyle songFormatHeaderPos">     <?php echo $songFormatHeader     ?> </div>
+			    <div class="headerStyle genreHeaderPos">          <?php echo $genreHeader          ?> </div>
+			    <div class="headerStyle bpmHeaderPos">	          <?php echo $bpmHeader            ?> </div>
 	    
 		<?php } ?>
 
@@ -415,58 +424,60 @@
 				if ($processRecords) {
 					while ($dbRow = $q->fetch()): 
 					
-					$songId      = trim(htmlspecialchars($dbRow['songId']));
-					$artist      = trim(htmlspecialchars(stripslashes($dbRow['artist'])));
-					$songTitle   = trim(htmlspecialchars(stripslashes($dbRow['songTitle'])));
-					$recordLabel = trim(htmlspecialchars(stripslashes($dbRow['recordLabel'])));
-					$year        = trim(htmlspecialchars(stripslashes($dbRow['year'])));
-					$duration    = trim(htmlspecialchars(stripslashes($dbRow['duration'])));
-					$side        = trim(htmlspecialchars(stripslashes($dbRow['side'])));
-					$songFormat  = trim(htmlspecialchars(stripslashes($dbRow['songFormat'])));
-					$genre       = trim(htmlspecialchars(stripslashes($dbRow['genre'])));
-					$bpm         = trim(htmlspecialchars(stripslashes($dbRow['bpm'])));
-					$displayName = $artist . ' - ' . $songTitle; 
+					$songId         = trim(htmlspecialchars($dbRow['songId']));
+					$artist         = trim(htmlspecialchars(stripslashes($dbRow['artist'])));
+					$songTitle      = trim(htmlspecialchars(stripslashes($dbRow['songTitle'])));
+					$recordLabel    = trim(htmlspecialchars(stripslashes($dbRow['recordLabel'])));
+					$year           = trim(htmlspecialchars(stripslashes($dbRow['year'])));
+					$numberOfCopies = trim(htmlspecialchars(stripslashes($dbRow['numberOfCopies'])));
+					$duration       = trim(htmlspecialchars(stripslashes($dbRow['duration'])));
+					$side           = trim(htmlspecialchars(stripslashes($dbRow['side'])));
+					$songFormat     = trim(htmlspecialchars(stripslashes($dbRow['songFormat'])));
+					$genre          = trim(htmlspecialchars(stripslashes($dbRow['genre'])));
+					$bpm            = trim(htmlspecialchars(stripslashes($dbRow['bpm'])));
+					$displayName    = $artist . ' - ' . $songTitle; 
 			?>
 				
 			<div class="rowStyle">
 	            <div class="editButton">
 	            	<input type="image" id="editButton" name="editButton" value="Edit" src="/images/pencil.png" title="Edit <?php echo $displayName; ?>"
-	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel']
-	            			.'::'.$dbRow['year'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
+	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel'].'::'.$dbRow['year']
+	            			.'::'.$dbRow['numberOfCopies'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
 	            		?>', 'editButton');"  
 	            	/>
 				</div>
 				
 				<div>
 					<input type="image" id="deleteButton<?php echo $songId; ?>" class="deleteButton" name="deleteButton" value="Delete" src="/images/trash.png" title="Delete <?php echo $displayName; ?>"
-	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel']
-	        				.'::'.$dbRow['year'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
+	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel'].'::'.$dbRow['year']
+	        				.'::'.$dbRow['numberOfCopies'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
 		    			?>', 'deleteButton');"
 	        		/>
 				</div>
 				
-				<div class="artistField">      <?php echo $artist;      ?> </div>
-				<div class="songTitleField">   <?php echo $songTitle;   ?> </div>
-				<div class="recordLabelField"> <?php echo $recordLabel; ?> </div>
-				<div class="yearField">        <?php echo $year;        ?> </div>
-				<div class="durationField">    <?php echo $duration;    ?> </div>
-				<div class="sideField">        <?php echo $side;        ?> </div>
-				<div class="songFormatField">  <?php echo $songFormat;  ?> </div>
-				<div class="genreField">       <?php echo $genre;       ?> </div>
-				<div class="bpmField">         <?php echo $bpm;         ?> </div>
+				<div class="artistField">         <?php echo $artist;         ?> </div>
+				<div class="songTitleField">      <?php echo $songTitle;      ?> </div>
+				<div class="recordLabelField">    <?php echo $recordLabel;    ?> </div>
+				<div class="yearField">           <?php echo $year;           ?> </div>
+				<div class="numberOfCopiesField"> <?php echo $numberOfCopies; ?> </div>
+				<div class="durationField">       <?php echo $duration;       ?> </div>
+				<div class="sideField">           <?php echo $side;           ?> </div>
+				<div class="songFormatField">     <?php echo $songFormat;     ?> </div>
+				<div class="genreField">          <?php echo $genre;          ?> </div>
+				<div class="bpmField">            <?php echo $bpm;            ?> </div>
 				
 				<div class="editButtonEnd">
 					<input type="image" id="editButton" name="editButton" value="Edit" src="/images/pencil.png" title="Edit <?php echo $displayName; ?>"
-	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel']
-	            			.'::'.$dbRow['year'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
+	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel'].'::'.$dbRow['year']
+	            			.'::'.$dbRow['numberOfCopies'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
 	            		?>', 'editButton');"   
 	            	/>
 				</div>
 				
 				<div>
 					<input type="image" id="deleteButton<?php echo $songId; ?>" class="deleteButtonEnd" name="deleteButton" value="Delete" src="/images/trash.png" title="Delete <?php echo $displayName; ?>"
-	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel']
-	        				.'::'.$dbRow['year'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
+	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel'].'::'.$dbRow['year']
+	        				.'::'.$dbRow['numberOfCopies'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
 		    			?>', 'deleteButton');"
 	        		/>
 				</div>

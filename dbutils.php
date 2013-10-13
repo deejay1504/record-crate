@@ -42,7 +42,8 @@ class DbUtils {
 		$countQuery->setFetchMode(PDO::FETCH_ASSOC);
 
 		// Count the number of A Sides to display as part of the total
-	    $sql = 'SELECT count(*) as totalASides
+//	    $sql = 'SELECT count(*) as totalASides
+	    $sql = 'SELECT sum(numberOfCopies) as totalASides
 	            FROM crate
 				WHERE side = \'A Side\'';
 	    
@@ -70,7 +71,8 @@ class DbUtils {
 		$bSideQuery->setFetchMode(PDO::FETCH_ASSOC);
 	
 		// Count the number of AA Sides to display as part of the total
-	    $sql = 'SELECT count(*) as totalAASides
+//	    $sql = 'SELECT count(*) as totalAASides
+	    $sql = 'SELECT sum(numberOfCopies) as totalAASides
 	            FROM crate
 				WHERE side = \'AA Side\'';
 	    

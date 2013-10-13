@@ -55,6 +55,22 @@ container {
     height:100%;
 }
 
+.headerStyle, .artistHeaderPos, .songTitleHeaderPos, .recordLabelHeaderPos, .yearHeaderPos, .numberOfCopiesHeaderPos, 
+.durationHeaderPos, .sideHeaderPos, .songFormatHeaderPos, .genreHeaderPos, .bpmHeaderPos {
+	font-weight: bold;
+	font-size: 16px;
+    position:absolute;
+    top:68px;
+    height:100%;
+}
+
+.artistField, .songTitleField, .recordLabelField, .yearField, .durationField, .numberOfCopiesField,
+.sideField, .songFormatField, .genreField, .bpmField, .displayPagesField {
+    position:absolute;
+    border-radius:15px;
+    padding-left: 7px; 
+}
+
 .dateHeaderPos {
     left:115px;
     width:200px;
@@ -118,49 +134,114 @@ container {
     width:100px;
 }
 
-.headerStyle, .artistHeaderPos, .songTitleHeaderPos, .recordLabelHeaderPos, .yearHeaderPos, .durationHeaderPos, .sideHeaderPos, 
-.songFormatHeaderPos, .genreHeaderPos, .bpmHeaderPos {
-	font-weight: bold;
-	font-size: 16px;
-    position:absolute;
-    top:68px;
-    height:100%;
-}
-
 .artistHeaderPos {
     left:122px;
+}
+
+.artistField {
+	top:8px;
+    left:112px;
+    width:290px;
+    background-color: #99FFCC;
 }
 
 .songTitleHeaderPos {
     left:440px;
 }
 
+.songTitleField {
+	top:8px;
+    left:428px;
+    width:310px;
+    background-color: #CCFFFF;
+}
+
 .recordLabelHeaderPos {
     left:769px;
+}
+
+.recordLabelField {
+	top:8px;
+    left:758px;
+    width:200px;
+    background-color: #99FFCC;
 }
 
 .yearHeaderPos {
     left:993px;
 }
 
+.yearField {
+	top:8px;
+    left:982px;
+    width:42px;
+    background-color: #CCFFFF;
+}
+
+.numberOfCopiesHeaderPos {
+    left:1062px;
+}
+
+.numberOfCopiesField {
+	top:8px;
+    left:1053px;
+    width:50px;
+    background-color: #99FFCC;
+}
+
 .durationHeaderPos {
-    left:1058px;
+    left:1145px;
+}
+
+.durationField {
+	top:8px;
+    left:1135px;
+    width:65px;
+    background-color: #99FFCC;
 }
 
 .sideHeaderPos {
-    left:1150px;
+    left:1240px;
+}
+
+.sideField {
+	top:8px;
+    left:1230px;
+    width:55px;
+    background-color: #CCFFFF;
 }
 
 .songFormatHeaderPos {
-    left:1250px;
+    left:1330px;
+}
+
+.songFormatField {
+	top:8px;
+    left:1320px;
+    width:105px;
+    background-color: #99FFCC;
 }
 
 .genreHeaderPos {
-    left:1400px;
+    left:1470px;
+}
+
+.genreField {
+	top:8px;
+    left:1460px;
+    width:180px;
+    background-color: #CCFFFF;
 }
 
 .bpmHeaderPos {
-    left:1629px;
+    left:1677px;
+}
+
+.bpmField {
+	top:8px;
+    left:1667px;
+    width:28px;
+    background-color: #99FFCC;
 }
 
 .rowStyle {
@@ -191,87 +272,17 @@ container {
 
 .editButtonEnd {
 	margin-top: -33px;
-	margin-left: 1656px;
+	margin-left: 1706px;
     width:5px;
     height:5px;
 } 
 
 .deleteButtonEnd {
 	margin-top: -2px;
-	margin-left: 1681px;
+	margin-left: 1731px;
     width:25px;
     height:25px;
 } 
-
-.artistField, .songTitleField, .recordLabelField, .yearField, .durationField, 
-.sideField, .songFormatField, .genreField, .bpmField, .displayPagesField {
-    position:absolute;
-    border-radius:15px;
-    padding-left: 7px; 
-}
-
-.artistField {
-	top:8px;
-    left:112px;
-    width:290px;
-    background-color: #99FFCC;
-}
-
-.songTitleField {
-	top:8px;
-    left:428px;
-    width:310px;
-    background-color: #CCFFFF;
-}
-
-.recordLabelField {
-	top:8px;
-    left:758px;
-    width:200px;
-    background-color: #99FFCC;
-}
-
-.yearField {
-	top:8px;
-    left:982px;
-    width:42px;
-    background-color: #CCFFFF;
-}
-
-.durationField {
-	top:8px;
-    left:1048px;
-    width:65px;
-    background-color: #99FFCC;
-}
-
-.sideField {
-	top:8px;
-    left:1140px;
-    width:55px;
-    background-color: #CCFFFF;
-}
-
-.songFormatField {
-	top:8px;
-    left:1240px;
-    width:105px;
-    background-color: #99FFCC;
-}
-
-.genreField {
-	top:8px;
-    left:1391px;
-    width:180px;
-    background-color: #CCFFFF;
-}
-
-.bpmField {
-	top:8px;
-    left:1617px;
-    width:28px;
-    background-color: #99FFCC;
-}
 
 .currentPageField, .displayPagesField, .homePageLink, .addSongLink, .displayJumpMenuField, .searchTotal {
 	position:absolute;
@@ -322,7 +333,6 @@ container {
 	top:-10px;
     left:765px;
 }
-
 
 .homePageLink {
 	top:15px;
