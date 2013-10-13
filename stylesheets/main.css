@@ -136,15 +136,15 @@ container {
 }
 
 .recordLabelHeaderPos {
-    left:743px;
+    left:769px;
 }
 
 .yearHeaderPos {
-    left:970px;
+    left:993px;
 }
 
 .durationHeaderPos {
-    left:1050px;
+    left:1058px;
 }
 
 .sideHeaderPos {
@@ -220,27 +220,27 @@ container {
 .songTitleField {
 	top:8px;
     left:428px;
-    width:285px;
+    width:310px;
     background-color: #CCFFFF;
 }
 
 .recordLabelField {
 	top:8px;
-    left:731px;
+    left:758px;
     width:200px;
     background-color: #99FFCC;
 }
 
 .yearField {
 	top:8px;
-    left:960px;
+    left:982px;
     width:42px;
     background-color: #CCFFFF;
 }
 
 .durationField {
 	top:8px;
-    left:1040px;
+    left:1048px;
     width:65px;
     background-color: #99FFCC;
 }
