@@ -64,6 +64,7 @@
 			
 			$searchFieldValue = $_GET['searchFieldValue']; 
 			$crudOp           = $_GET['crudOp']; 
+			$selectedSongFormat = $_GET['selectedSongFormat'];
 			$orderByField     = (empty($_GET['orderByField'])) ? "asc" : $_GET['orderByField']; 
 			
 			if ($orderByField == "asc") {
@@ -96,7 +97,7 @@
 			$pages->mid_range        = 9;  
 			$pages->paginate();  
 			
-			$addUrl = "location.href='crud.php?crudOp=I&sortField=" . $sortField . "&orderBy=" . $orderByField . "'";
+			$addUrl = "location.href='crud.php?crudOp=I&selectedSongFormat=" . $selectedSongFormat . "&sortField=" . $sortField . "&orderBy=" . $orderByField . "'";
 			
 			$processQuery = false;
 	

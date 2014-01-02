@@ -195,25 +195,9 @@
 		return $sideNum;
     }
 
-    function setSongFormat($songFormatValue) {
-		if ($songFormatValue == "7 inch") {
-			$songFormatNum = 1;
-		} else if ($songFormatValue == "10 inch") {
-			$songFormatNum = 2;
-		} else if ($songFormatValue == "12 inch") {
-			$songFormatNum = 3;
-		} else if ($songFormatValue == "LP") {
-			$songFormatNum = 4;
-		} else if ($songFormatValue == "CD") {
-			$songFormatNum = 5;
-		} else if ($songFormatValue == "MP3") {
-			$songFormatNum = 6;
-		}
-		return $songFormatNum;
-    }
-    
 	$config = require 'config.php';
 	require_once 'dbutils.php';
+	require_once 'general_utils.php';
 	
 	$db            = new DbUtils;  
 	$db->countTotals("", "", "", "");
@@ -253,12 +237,18 @@
 		$formattedDuration = formatDuration(0, 0, 0);
 		$bpm               = 0;
 		$numberOfCopies    = 1;
+		
+		// Set the selected value for the drop down 'songFormat' field
+		$selectedSongFormat = getCurrentSongFormat($db);
+		$songFormatNum = setSongFormat($selectedSongFormat);
 	} else {
 		$songRecord = urldecode($_POST['amendedSongRecord']); 
 	   	$deleteOk   = urldecode($_POST['deleteOk']);
 		
 		list($songId, $artist, $songTitle, $recordLabel, $year, $numberOfCopies, $duration, $side, $songFormat, $genre, $bpm) =
     		split("::", $songRecord, 11);
+    		
+    	$songFormatNum = setSongFormat($songFormat);
     		
 		if (! is_null($duration) && ! empty($duration)) {
 			list($duration_hh, $duration_mm, $duration_ss) = split(":", $duration, 3);
@@ -290,13 +280,6 @@
 			header('Location: ' . $displayCrateHref); 
 		}
 	}	
-	
-	// Set the selected value for the drop down 'songFormat' field
-	if (is_null($songFormat) || empty($songFormat)) {
-		$songFormatNum = setSongFormat($config['default_song_format']);
-	} else {	
-		$songFormatNum = setSongFormat($songFormat);
-	}
 	
 	// Set the selected value for the drop down 'side' field
 	if (! is_null($side) && ! empty($side)) {
@@ -390,7 +373,8 @@
 		
 		// Reset the Song Format and Side drop down in case the values have been amended
 		if (is_null($songFormat) || empty($songFormat)) {
-			$songFormatNum = setSongFormat($config['default_song_format']);
+			$selectedSongFormat = getCurrentSongFormat($db);
+			$songFormatNum = setSongFormat($selectedSongFormat);
 		} else {	
 			$songFormatNum = setSongFormat($songFormat);
 		}

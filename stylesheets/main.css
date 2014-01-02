@@ -141,83 +141,83 @@ container {
 .artistField {
 	top:8px;
     left:112px;
-    width:290px;
+    width:310px;
     background-color: #99FFCC;
 }
 
 .songTitleHeaderPos {
-    left:440px;
+    left:447px;
 }
 
 .songTitleField {
 	top:8px;
-    left:428px;
-    width:310px;
+    left:435px;
+    width:320px;
     background-color: #CCFFFF;
 }
 
 .recordLabelHeaderPos {
-    left:769px;
+    left:781px;
 }
 
 .recordLabelField {
 	top:8px;
-    left:758px;
+    left:770px;
     width:200px;
     background-color: #99FFCC;
 }
 
 .yearHeaderPos {
-    left:993px;
+    left:1003px;
 }
 
 .yearField {
 	top:8px;
-    left:982px;
+    left:992px;
     width:42px;
     background-color: #CCFFFF;
 }
 
 .numberOfCopiesHeaderPos {
-    left:1062px;
+    left:1074px;
 }
 
 .numberOfCopiesField {
 	top:8px;
-    left:1053px;
+    left:1065px;
     width:50px;
     background-color: #99FFCC;
 }
 
 .durationHeaderPos {
-    left:1145px;
+    left:1157px;
 }
 
 .durationField {
 	top:8px;
-    left:1135px;
+    left:1147px;
     width:65px;
     background-color: #99FFCC;
 }
 
 .sideHeaderPos {
-    left:1240px;
+    left:1252px;
 }
 
 .sideField {
 	top:8px;
-    left:1230px;
+    left:1242px;
     width:55px;
     background-color: #CCFFFF;
 }
 
 .songFormatHeaderPos {
-    left:1330px;
+    left:1340px;
 }
 
 .songFormatField {
 	top:8px;
-    left:1320px;
+    left:1330px;
     width:105px;
     background-color: #99FFCC;
 }

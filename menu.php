@@ -11,12 +11,20 @@
   			active: false,
   			collapsible: true
 		});
+		
+		$("#songFormat").change(function() {
+  			 var locationHref = 'menu.php?selectedSongFormat=' + $(this).val();
+  			 window.location.href = locationHref;
+		});
+		
 	});
+	
 </script>
 </head>
 <body class="menuBody">
 	<?php
 		require_once 'dbutils.php';
+		require_once 'general_utils.php';
 		
 		$db = new DbUtils;  
 		$db->countTotals($crudOp, $searchFieldValue, $searchField, $likeFieldValue);
@@ -50,7 +58,24 @@
 		$countInfo   = 'Total Records in Crate: <b>' . $totalRecs . '</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<b>' . $db->totalASides 
 			. '</b> A Sides &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>' . $db->totalAASides
 			. '</b> AA Sides &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>' . $db->totalBSides . '</b> B Sides)';
-					
+			
+		// Store the current record format for the other screens to use
+		$selectedSongFormat = $_GET['selectedSongFormat']; 		
+		if ($selectedSongFormat == '') {
+			$selectedSongFormat = getCurrentSongFormat($db);
+			$songFormatNum = setSongFormat($selectedSongFormat);
+		} else {
+			$songFormatNum = setSongFormat($selectedSongFormat);
+			$sql = "update config ".
+	               "set propertyValue  = '" . $selectedSongFormat . "' " . 
+	               "where propertyName = 'currentSongFormat'";
+		    try { 
+			   	$q = $db->dbConnection->query($sql); 
+			} 
+			catch (PDOException $e) { 
+			   die("Query failure: " . $e->getMessage()); 
+			}
+		}
 	?>
 	<div id="container">
 		<div id="accordion">
@@ -61,6 +86,20 @@
 		  <h3>Last Record Entered</h3>
 		  <div>
 		    <p><center><label class="infoLabel"><?php echo $info; ?></label></center></p>
+		  </div>
+		  <h3>Admin</h3>
+		  <div>
+		    <p><center>
+		    	<label class="infoLabel">Song Format</label>
+		    	<select id='songFormat'>
+					<option value="7 inch"  <?php if ($songFormatNum == 1) echo 'selected'; ?> >7 inch</option>
+					<option value="10 inch" <?php if ($songFormatNum == 2) echo 'selected'; ?> >10 inch</option>
+					<option value="12 inch" <?php if ($songFormatNum == 3) echo 'selected'; ?> >12 inch</option>
+					<option value="LP"      <?php if ($songFormatNum == 4) echo 'selected'; ?> >LP</option>
+					<option value="CD"      <?php if ($songFormatNum == 5) echo 'selected'; ?> >CD</option>
+					<option value="MP3"     <?php if ($songFormatNum == 6) echo 'selected'; ?> >MP3</option>
+				</select>
+			</center></p>
 		  </div>
 		</div>
 		<div class="crateButtonField">
@@ -74,5 +113,8 @@
 			/>
 		</div>
 	</div>
+	<input type="hidden" id="menuLocationHref"/>
+	<input type="hidden" id="openCrateLocationHref"/>
+	<input type="hidden" id="songFormatValue"/>
 </body>
 </html>
