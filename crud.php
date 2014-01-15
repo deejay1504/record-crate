@@ -458,12 +458,13 @@
 			<div class="crudHeader">Song Format</div>
 			<div class="crudField">
 				<select name='songFormat'>
-					<option value="7 inch"  <?php if ($songFormatNum == 1) echo 'selected'; ?> >7 inch</option>
-					<option value="10 inch" <?php if ($songFormatNum == 2) echo 'selected'; ?> >10 inch</option>
-					<option value="12 inch" <?php if ($songFormatNum == 3) echo 'selected'; ?> >12 inch</option>
-					<option value="LP"      <?php if ($songFormatNum == 4) echo 'selected'; ?> >LP</option>
-					<option value="CD"      <?php if ($songFormatNum == 5) echo 'selected'; ?> >CD</option>
-					<option value="MP3"     <?php if ($songFormatNum == 6) echo 'selected'; ?> >MP3</option>
+					<option value="7 inch"    <?php if ($songFormatNum == 1) echo 'selected'; ?> >7 inch</option>
+					<option value="10 inch"   <?php if ($songFormatNum == 2) echo 'selected'; ?> >10 inch</option>
+					<option value="12 inch"   <?php if ($songFormatNum == 3) echo 'selected'; ?> >12 inch</option>
+					<option value="LP"        <?php if ($songFormatNum == 4) echo 'selected'; ?> >LP</option>
+					<option value="CD"        <?php if ($songFormatNum == 5) echo 'selected'; ?> >CD</option>
+					<option value="CD Single" <?php if ($songFormatNum == 6) echo 'selected'; ?> >CD Single</option>
+					<option value="MP3"       <?php if ($songFormatNum == 7) echo 'selected'; ?> >MP3</option>
 				</select>
 			</div>
 		</div>

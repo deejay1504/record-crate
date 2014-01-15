@@ -10,8 +10,10 @@
 			$songFormatNum = 4;
 		} else if ($songFormatValue == "CD") {
 			$songFormatNum = 5;
-		} else if ($songFormatValue == "MP3") {
+		} else if ($songFormatValue == "CD Single") {
 			$songFormatNum = 6;
+		} else if ($songFormatValue == "MP3") {
+			$songFormatNum = 7;
 		}
 		return $songFormatNum;
     }
