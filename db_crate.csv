@@ -31,7 +31,7 @@
 35,"The Beat","Hands Off...She\'s Mine","Go Feet",1980,00:04:34,"AA Side","12 inch",Ska,0
 37,"The Undertones","Teenage Kicks","Good Vibrations Records",1978,00:02:20,"A Side","7 inch",Punk,136
 38,"The Charmels","As long as I\'ve got you","Chamber Music",1967,00:02:39,"A Side","7 inch",Soul,86
-39,"Bitty McLean with Ansel Collins",Cornerstone,"Silent River",2013,00:00:00,"A Side","7 inch",Reggae,0
+39,"Bitty McLean with Ansel Collins",Cornerstone,"Silent River",2013,00:03:35,"A Side","7 inch",Reggae,81
 40,"Joe Cocker","Woman to woman","Cube records",1972,00:04:29,"A Side","7 inch",Rock,91
 41,"Jack Penate","Dub be good to me","XL Recordings",2007,00:04:11,"A Side","7 inch",Soul,98
 42,"Thurston Harris","Little Bitty Pretty One",Aladdin,1957,00:02:22,"A Side","7 inch","Doo Wop",88
@@ -260,7 +260,7 @@
 272,"D Train",Music,RCA,1985,00:08:13,"A Side","12 inch","Soul / Funk / Disco",120
 273,"Rene and Angela","I\'ll be good","Phonogram Records",1985,00:05:14,"A Side","12 inch","Soul / Funk / Disco",108
 274,"Oneness of JuJu","Every way but loose","Buddah Records",1981,00:04:20,"A Side","12 inch","Soul / Funk",118
-275,AK/DK,"Fallout Friedman","Little Miss Echo",2012,00:00:00,"A Side","7 inch","Dance / Electronic",80
+275,"AK / DK","Fallout Friedman","Little Miss Echo Recordings",2012,00:00:00,"A Side","7 inch","Dance / Electronic",80
 276,"Arrested Development",Tennessee,Cooltempo,1993,00:03:28,"A Side","7 inch","Hip Hop",100
 277,"Beastie Boys ","She\'s on it","Def Jam Recordings",1985,00:04:18,"A Side","7 inch","Hip Hop",141
 278,"The Beat","Tears of a clown","Two Tone",1979,00:02:39,"AA Side","7 inch",Ska,84
@@ -301,7 +301,7 @@
 316,"Ruthless Rap Assassins","Just mellow",Murdertone,1990,00:03:59,"A Side","7 inch","Hip Hop",92
 317,"Rum Committee","F**k up the party","Rum Com",2012,00:00:00,"A Side","7 inch","Hip Hop",0
 318,"The Ruts","West one shine on me",Virgin,1980,00:02:52,"A Side","7 inch",Punk,86
-319,"Sam the Sham & The Pharaohs","Wooly Bully","MGM Records",1965,00:02:20,"A Side","7 inch","Rock \'n\' Roll",1380
+319,"Sam The Sham & The Pharaohs","Wooly Bully","MGM Records",1965,00:02:20,"A Side","7 inch","Rock \'n\' Roll",1380
 320,"Savoy Brown","I\'m tired",Parrot,1969,00:03:06,"A Side","7 inch",Rock,135
 321,"Silver Bullet","Undercover anarchist",Parlophone,1991,00:03:17,"A Side","7 inch","Hip Hop",71
 322,"Phonenix City All Stars ft Dave Barker","Will you still love me tomorrow","London Ska Festival",2012,00:00:00,"A Side","7 inch",Ska,0
@@ -462,7 +462,7 @@
 508,"Timmie \"Oh Yeah\" Rogers","Back To School Again",Cameo,1957,00:00:00,"A Side","7 inch","Rock \'n\' Roll",0
 509,"The Viscounts","Harlem Nocturne","Madison Records",1959,00:02:48,"A Side","7 inch","Rock \'n\' Roll",104
 510,"The Selecter","On My Radio \'91","Pagan Records",1991,00:05:45,"A Side","12 inch",Ska,136
-511,"Gladys Knight & The Pips","The Way We Were","Buddah Records",1974,00:04:39,"A Side","7 inch",Soul,94
+511,"Gladys Knight and The Pips","The Way We Were","Buddah Records",1974,00:04:39,"A Side","7 inch",Soul,94
 512,"The Stylistics","Let\'s Put It All Together",Avco,1974,00:03:28,"A Side","7 inch",Soul,130
 513,"Stevie Wonder","Boogie On Reggae Woman","Tamla Motown",1974,00:04:05,"A Side","7 inch","Soul / Funk/ Reggae",108
 514,"Donna Summer","I Feel Love","GTO Records",1977,00:03:45,"A Side","7 inch","Electronic / Funk / Disco",126
@@ -576,7 +576,7 @@
 623,"The Velvelettes","Needle In A Haystack","Motown Records",1964,00:02:23,"AA Side","7 inch","Funk / Soul",77
 624,"Eddie Warner","Brutus Drums","Finders Keepers",2000,00:00:00,"A Side","7 inch","Funk / Soul",0
 625,"Wayne Fontana","Um, Um, Um, Um, Um, Um",Fontana,1964,00:02:30,"A Side","7 inch",Pop,121
-626,"We The People","Break Down","Davel Music Corp",1975,00:03:31,"A Side","7 inch","Funk / Soul",0
+626,"We The People","Break Down","Davel Music Corp",1975,00:03:31,"A Side","7 inch","Soul / Funk",0
 627,"Barry White","You\'re The First, The Last, My Everything","20th Century Records",1974,00:04:34,"A Side","7 inch","Funk / Soul",130
 628,"Bobby Womack","Harry Hippy",Collectables,1993,00:00:00,"A Side","7 inch","Funk / Soul",0
 629,"Stevie Wonder","You Haven\'t Done Nothin\'","Motown Records",1974,00:03:20,"A Side","7 inch","Soul / Funk",0
@@ -1152,7 +1152,7 @@
 1205,"Don Baron","Young, Gifted And Black","Strong City",1988,00:00:00,"A Side",LP,"Hip Hop",0
 1206,Various,"Barrio Nuevo","Soul Jazz Records",1999,00:00:00,"A Side",LP,"Latin Rock",0
 1207,"Shirley Bassey","And I Love You So","United Artists Records",1972,00:00:00,"A Side",LP,"Soul / Ballads",0
-1208,"Beats International","Excursion On The Version","Go! Discs",1991,00:00:00,"A Side",LP,"Hip Hop / Breaks / Electronic",0
+1208,"Beats International","Excursion On The Version","Go! Discs",1991,00:00:00,"A Side",LP,"Hip Hop / Breaks",0
 1209,Batucada,Capoeira,"Soul Jazz Records",1998,00:00:00,"A Side",LP,latin,0
 1210,Batucada,"Batucada Por Favor","Mr Bongo",1998,00:00:00,"A Side",LP,Latin,0
 1211,Batucada,"The Sounds Of The Favelas","Mr Bongo",1996,00:00:00,"A Side",LP,Latin,0
@@ -2078,8 +2078,8 @@
 2133,Various,"West Indies Funk","Music For Pleasure",2011,00:00:00,"A Side",LP,"Soul / Funk",0
 2134,"Barry White","Can\'t Get Enough","20th Century Records",1974,00:00:00,"A Side",LP,"Soul / Funk",0
 2135,"The White Stripes",Elephant,"XL Recordings",2003,00:00:00,"A Side",LP,"Alt Rock",0
-2136,"The White Stripes","The White Stripes","Sympathy For The Record Industry",1999,00:00:00,"A Side",LP,"Alt Rock",0
-2137,"The White Stripes","White Blood Cells","Sympathy For The Record Industry",2001,00:00:00,"A Side",LP,"Alt Rock / Punk",0
+2136,"The White Stripes","The White Stripes","Sympathy For Record Industry",1999,00:00:00,"A Side",LP,"Alt Rock",0
+2137,"The White Stripes","White Blood Cells","Sympathy For  Record Industry",2001,00:00:00,"A Side",LP,"Alt Rock / Punk",0
 2138,"The Who","The Kids Are Alright",Polydor,1979,00:00:00,"A Side",LP,"Soundtrack / Rock",0
 2139,"The Who","BBC Sessions","Polydor Records",2000,00:00:00,"A Side",LP,Rock,0
 2140,Various,"Why Die When You Could Riot","Not On Label",2013,00:00:00,"A Side",LP,"Riot Grrl / Punk",0
@@ -2107,3 +2107,110 @@
 2162,"Benjamin Zephaniah","Us An Dem","Island Records",1990,00:00:00,"A Side",LP,"Reggae / Spoken Word",0
 2163,"Zion I & The Grouch","Heroes In The City Of Dope","OM Hip Hop",2006,00:00:00,"A Side",LP,"Hip Hop",0
 2164,"Michael Franti & Spearhead","Rock The Nation",Parlophone,2001,00:04:26,"A Side","12 inch","Soul / Funk / Hip Hop",119
+2166,"Talking Heads","Slippery People","Sire Records",1983,00:06:40,"A Side","12 inch","Art Rock / New Wave",104
+2167,"Talking Heads","Making Flippy Floppy","Sire Records",1983,00:06:32,"B Side","12 inch","Art Rock / New Wave",123
+2168,Radkey,"Devil Fruit EP","Little Man Records",2013,00:00:00,"A Side","12 inch",Punk,0
+2169,"Meli\'sa Morgan","Fool\'s Paradise","Capitol Records",1986,00:05:13,"A Side","12 inch","Soul / Funk",100
+2170,ESG,"ESG EP","99 Records",1981,00:00:00,"A Side","12 inch","Soul / Funk / New Wave",0
+2171,ESG,"Erase You","Fire Records",1991,00:04:10,"A Side","7 inch","Soul / Funk / New Wave",138
+2172,"Las Kellies","Erase You","Fire Records",2012,00:02:23,"B Side","7 inch","Soul / Funk / New Wave",147
+2173,"Michael Franti & Spearhead","All People","Capitol Records",2013,00:00:00,"A Side",LP,"Soul / Funk / Hip Hop",0
+2174,ESG,"You\'re No Good","Factory Records",1981,00:03:14,"A Side","7 inch","Soul / Funk / New Wave",115
+2175,"Bad Brains","Build A Nation","Megaforce Records",2007,00:00:00,"A Side",LP,"Punk / Hardcore",0
+2176,Kraftwerk,"Computer World","Warner Brothers",1981,00:00:00,"A Side",LP,"Electronic / Synth Pop",0
+2177,"The Simonsound","The Beam",Musicity,2013,00:00:00,"A Side","10 inch","Electronic / Synth Pop",0
+2178,"T La Rock & Jazzy Jay","It\'s Yours",Partytime,1984,00:04:17,"A Side","7 inch","Hip Hop",99
+2179,"DImples D","Sucker D.J.\'s (I Will Survive)",Partytime,1983,00:03:17,"A Side","7 inch","Hip Hop",108
+2180,"Marley Marl","Marley Marl Scratch (Demo)","NIA Records",1985,00:03:44,"A Side","7 inch","Hip Hop",0
+2181,"Biz Markie","Make The Music With Your Mouth Biz","Cold Chillin\'",1986,00:04:56,"A Side","7 inch","Hip Hop",98
+2182,"Big Daddy Kane","Just Rhymin\' With Biz","Cold Chillin\'",1988,00:04:05,"B Side","7 inch","Hip Hop",187
+2183,"Super Coper And Clarence Breakers","This Is The Way You Do The Breakdance","Clarence Music Records",1984,00:04:34,"A Side","7 inch","Hip Hop",0
+2184,"Universal Two","Dancing Heart","Golden Flamingo",1984,00:04:05,"A Side","7 inch","Hip Hop",119
+2185,Mantronix,"Hardcore Hip Hop","Sleeping Bag Records",1985,00:03:58,"A Side","7 inch","Hip Hop",96
+2186,"Cash Money And MC Marvelous","The Mighty Hard Rocker","Sleeping Bag Records",1988,00:03:00,"B Side","7 inch","Hip Hop",0
+2187,"Mr. Sweety G","At The Place To Be","Queen Constance Records",1981,00:03:22,"B Side","7 inch","Hip Hop",0
+2188,"Troy Rainey","Tricky Tee Rap","Heavenly Star Records",1979,00:04:25,"A Side","7 inch","Hip Hop",104
+2189,"The Fearless Four","Rockin\' It","Enjoy Records",1982,00:04:01,"A Side","7 inch","Hip Hop",96
+2190,"Spoonie Gee And The Treacherous Three","Love Rap","Enjoy Records",1980,00:06:45,"B Side","7 inch","Hip Hop",71
+2191,Stezo,"It\'s My Turn","Fresh Records",1989,00:03:36,"A Side","7 inch","Hip Hop",104
+2192,"Just Ice","Cold Gettin\' Dumb","Fresh Records",1987,00:03:45,"B Side","7 inch","Hip Hop",96
+2193,BDP,"The Bridge Is Over","B Boy Records",1987,00:03:26,"A Side","7 inch","Hip Hop",92
+2194,J.V.C.F.O.R.C.E,"Strong Island","B Boy Records",1987,00:00:00,"B Side","7 inch","Hip Hop",0
+2195,"Jungle Brothers",Jimbrowski,Idlers,1987,00:04:03,"B Side","7 inch","Hip Hop",93
+2196,"Robert Randolph And The Family Band","Lickety Split","Blue Note",2013,00:00:00,"A Side",LP,"Soul / Funk ",0
+2197,MFSB,K-Jee,"CBS Records",1975,00:03:15,"A Side","7 inch","Soul / Funk",119
+2198,Various,"Black Spirits - Festival Of New Black Poets","Black Forum",1972,00:00:00,"A Side",LP,"Spoken Word",0
+2199,"The Sequence","The Sequence","Sugar Hill Records",1980,00:00:00,"A Side",LP,"Hip Hop",0
+2200,"Richie Havens","Going Back To My Roots",Elektra,1979,00:05:01,"A Side","7 inch","Soul / Funk",120
+2201,"The Human League","Being Boiled","Fast Product",1978,00:03:39,"A Side","7 inch","Electronic, Synth-Pop",103
+2202,"Frank Wilson","Do I Love You (Indeed I Do)",Jobete,1965,00:02:22,"A Side","7 inch",Soul,133
+2203,"The Incredible Bongo Band","The Return Of The Incredible Bongo Band","Polydor Records",1974,00:00:00,"A Side",LP,"Soul / Funk / Breaks",0
+2204,"Phoenix City All-Stars",Skatisfaction,"Hotshot & Scorcher",2014,00:00:00,"A Side","7 inch",Ska,0
+2205,"Capleton ft. Method Man","Wings Of The Morning","Def Jam Recordings",1995,00:03:51,"A Side","12 inch","Reggae / Hip Hop",88
+2206,"The Sequence","Funk You Up","Sugar Hill Records",1980,00:06:48,"A Side","12 inch","Hip Hop",104
+2207,"The Jackson Five",Skywriter,"Tamla Motown",1973,00:00:00,"A Side","7 inch","Soul / Funk",0
+2208,"O\'Bryan","Soul Train\'s A\'Comin\' (Party Down)","Capitol Records",1983,00:04:13,"A Side","7 inch","Soul / Funk",0
+2209,"Gladys Knight and The Pips","Best Thing That Ever Happened To Me","Buddah Records",1975,00:03:41,"A Side","7 inch",Soul,95
+2210,"Lizz Wright",Fellowship,Verve,2010,00:00:00,"A Side",LP,"Soul / Jazz",0
+2211,"Lizz Wright","The Orchard",Verve,2008,00:00:00,"A Side",LP,"Soul / Jazz",0
+2212,"Fats Domino","Be My Guest","London American Recordings",1960,00:01:59,"A Side","7 inch","R \'n\' B",89
+2213,"The Mar-Keys","The Great Memphis Sound",Stax,1966,00:00:00,"A Side",LP,"Soul / Funk / R \'n\' B",0
+2214,"Peoples Choice","Do It Any Way You Wanna",TSOP,1975,00:03:15,"A Side","7 inch","Soul / Funk",0
+2215,"Cornell Campbell","There\'s A Fire",Strut,2013,00:00:00,"A Side","7 inch",Reggae,0
+2216,"Bow Bow Wow","C30, C60, C90 Go","EMI Records",1980,00:00:00,"A Side","7 inch",Punk,0
+2217,"Inside Out","No Spiritual Surrender EP","Revelation Records",1990,00:00:00,"A Side","7 inch","Rock / Punk",0
+2218,"Cornell Campbell","Queen Of The Minstreal",Attack,1968,00:03:12,"A Side","7 inch",Reggae,0
+2219,"Curtis Mayfield","Something To Believe In",Curtom,1980,00:00:00,"A Side",LP,"Soul / Funk",0
+2220,Manhattans,"Shining Star","CBS Records",1980,00:03:45,"A Side","7 inch",Soul,74
+2221,"Siouxsie And The Banshees","Kiss Them For Me","Polydor Records",1991,00:09:04,"A Side","12 inch","Alt Rock / Punk",0
+2222,"Dr. Feelgood",Stupidity,"United Artists Records",1976,00:00:00,"A Side",LP,"R \'n\' B",0
+2223,"Dawn Chorus And The Blue Tits","Teenage Kicks","Stiff Records",1985,00:00:00,"A Side","7 inch",Rock,0
+2224,"The Selecter","String Theory","Vocaphone Records",2013,00:00:00,"A Side",LP,Ska,0
+2225,"Sheila Hylton","The Bed\'s Too Big Without You","Island Records",1980,00:03:01,"A Side","7 inch",Reggae,96
+2226,Slave,"Stone Love","Cotillion Records",1980,00:00:00,"A Side",LP,"Soul / Funk",0
+2227,Luciano,Deliverance,Ariwa,2014,00:00:00,"A Side","7 inch",Reggae,0
+2228,"Sam Cooke","One Night Stand! Live At The Harlem Square Club",RCA,2005,00:00:00,"A Side",LP,Soul,0
+2229,"Micah Shemaiah ft Infinite & Matthias","Reggage Rockit","Corner Stone Music",2014,00:00:00,"A Side","7 inch",Reggae,0
+2230,"Ronnie Hudson And The Street People","West Coast Poplock","Street People Record Co.",1982,00:05:26,"A Side","12 inch","Soul / Funk",113
+2231,"The Cars","Greatest Hits",Elektra,1985,00:00:00,"A Side",LP,Rock,0
+2232,"Hollie Cook",Twice,"Mr Bongo",2014,00:00:00,"A Side",LP,Reggae,0
+2233,"The Breeders",Cannonball,4AD,1993,00:03:34,"A Side","12 inch","Rock / Alt Rock",113
+2234,"Delroy \"Bongo Man\" Byfield","Bongo Man","Treasure Isle",1970,00:00:00,"A Side","7 inch","Ska / Reggae",0
+2235,"Jeffrey Lewis & The Rain",wwprd,"Rough Trade Records",2013,00:03:47,"A Side","7 inch","Pop / Rock",0
+2236,"Barry Biggs","Side Show","Creole Records",1976,00:03:34,"A Side","7 inch",Reggae,151
+2237,"Alice Clark","Alice Clark","Mainstream Records",1972,00:00:00,"A Side",LP,"Soul / Funk",0
+2238,"Jake Bugg","Messed Up Kids EP","Jake Bugg Records",2013,00:03:00,"A Side","10 inch","Folk Rock",130
+2239,"Brass Construction","Brass Construction 5","Liberty / United Records",1979,00:00:00,"A Side",LP,"Soul / Funk",0
+2240,"Buchanan & Goodman","Flying Saucer PT. 1","Original Goldies",1956,00:02:35,"A Side","7 inch","Novelty / Comedy",97
+2241,"Willie Mitchell","The Champion Part 1",London,1976,00:02:15,"A Side","7 inch","Northern Soul / Soul",128
+2242,"Billy Butler","Right Track",Okeh,1974,00:02:25,"A Side","7 inch","Northern Soul / Soul",134
+2243,"Paul Heaton & Jacqui Abbott","What Have We Become","Virgin EMI Records",2014,00:00:00,"A Side",LP,"Pop / Rock",0
+2244,"AK / DK","Synths & Drums & Noise & Space","Little Miss Echo Recordings",2014,00:00:00,"A Side",LP,"Electronic / Synth Rock",0
+2245,"Bug Kann & The Plastic Jam","Made In Two Minutes","Record Breaker Ltd",1990,00:00:00,"A Side","12 inch","Hip Hop / Rave",0
+2246,"Jack White",Lazaretto,"Third Man Records",2014,00:00:00,"A Side",LP,Rock,0
+2247,"The Rimshots","Soul Train","A-1 Records",1972,00:00:00,"A Side",LP,"Soul / Funk",0
+2248,"Lewis Floyd Henry","Across The Thames","Real Recordings",2013,00:00:00,"A Side",LP,Rock,0
+2249,"Kate Tempest","Everybody Down","Bid Dada",2014,00:00:00,"A Side",LP,"Spoken Word / Hip Hop",0
+2250,"Martha & The Muffins","Echo Beach",Dindisc,1980,00:03:33,"A Side","7 inch","Electronic / Rock",130
+2251,Fishbone,"Everyday Sunshine",Columbia,1992,00:04:57,"A Side","7 inch","Rock / Alt Rock / Ska",111
+2252,"Twin Hype","Do It To The Crowd","Profile Records",1989,00:05:02,"A Side","12 inch","Hip Hop",115
+2253,"Bitty Mclean","It Keeps Rainin\' (Tears From My Eyes)","Brilliant Recording Co",1993,00:03:48,"A Side","7 inch",Reggae,128
+2254,"Bitty Mclean","We\'ve Only Just Begun","Brilliant Recording Co",1995,00:04:06,"A Side","7 inch",Reggae,91
+2255,"Bitty Mclean","Dedicated To The One I Love","Brilliant Recording Co",1994,00:03:44,"A Side","7 inch",Reggae,176
+2256,"Bitty McLean",Lately,"Silent River",2007,00:04:04,"A Side","7 inch",Reggae,79
+2257,"Hit & Run","Wooly Bully","Ariola Records",1978,00:02:17,"A Side","7 inch","Ska / Pop",0
+2258,"Smoove & Turrell","Broken Toys","Jalapeno Records",2014,00:00:00,"A Side",LP,"Soul / Funk",0
+2259,Chronixx,"Here Comes Trouble","Overstand Entertainment",2013,00:03:55,"A Side","7 inch",Reggae,83
+2260,"Siouxsie And The Banshees","Kiss Them For Me","Polydor Records",1991,00:04:28,"A Side","7 inch","Post Punk / New Wave",99
+2261,"The Tomangoe\'s","I Really Love You","Washpan Records",1970,00:02:15,"A Side","7 inch","Northern Soul / Soul",0
+2262,"Eddie Parker","I\'m Gone",Ashford,1966,00:02:43,"A Side","7 inch","Northern Soul / Soul",130
+2263,"The Vel-Vets","I Got To Find Me Somebody","20th Century Records",1974,00:02:22,"A Side","7 inch","Northern Soul / Soul",0
+2264,"Edwin Starr",Time,"Tamla Motown",1970,00:03:01,"A Side","7 inch","Northern Soul / Soul",133
+2265,"The Crow","Your Autumn Of Tomorrow","Inner Ear",1970,00:00:00,"A Side","7 inch","Northern Soul / Soul",0
+2266,"Tony Galla","In Love",Swan,1967,00:02:35,"A Side","7 inch","Northern Soul / Soul",141
+2267,"Tanya \'Sweet Tee\' Winley","Vicious Rap","Paul WInley Records",1980,00:07:30,"A Side","12 inch","Hip Hop",108
+2268,"Towanda Barnes","You Don\'t Mean It","A & M Records",1969,00:02:59,"A Side","7 inch","Northern Soul / Soul",79
+2269,"Darrell Banks","Our Love","Revliot Records",1966,00:02:34,"A Side","7 inch","Northern Soul / Soul",142
+2270,"Freshco & Miz","We Don\'t Play","Tommy Boy",1990,00:00:00,"A Side","12 inch","Hip Hop",0
+2272,"Bob Marley","Legend - The Best Of Bob Marley","Island Records",2014,00:00:00,"A Side",LP,Reggae,0
+2273,Chronixx,"Selassie Souljahz","Royal Order Music",2013,00:04:15,"A Side","7 inch",Reggae,176
