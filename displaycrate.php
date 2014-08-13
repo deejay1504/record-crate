@@ -69,11 +69,11 @@
 			
 			if ($orderByField == "asc") {
 				$ascSelected   = "selected";
-				$sortOrderIcon = "/images/down_arrow.png";
+				$sortOrderIcon = "/php/images/down_arrow.png";
 				$sortTitle     = "Sort in descending order";
 			} else if ($orderByField == "desc") {
 				$descSelected  = "selected";
-				$sortOrderIcon = "/images/up_arrow.png";
+				$sortOrderIcon = "/php/images/up_arrow.png";
 				$sortTitle     = "Sort in ascending order";
 			}
 			
@@ -97,7 +97,7 @@
 			$pages->mid_range        = 9;  
 			$pages->paginate();  
 			
-			$addUrl = "location.href='crud.php?crudOp=I&selectedSongFormat=" . $selectedSongFormat . "&sortField=" . $sortField . "&orderBy=" . $orderByField . "'";
+			$addUrl = "location.href='/php/crud.php?crudOp=I&selectedSongFormat=" . $selectedSongFormat . "&sortField=" . $sortField . "&orderBy=" . $orderByField . "'";
 			
 			$processQuery = false;
 	
@@ -169,11 +169,11 @@
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Record Crate</title>
-	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
-	<link type="text/css" rel="stylesheet" href="/stylesheets/jquery-ui-redmond-1.10.3.custom.css" />
-	<script src="/js/jquery-1.9.1.js"></script>
-	<script src="/js/jquery-ui-1.10.3.custom.js"></script>
-	<script src="/js/script.js"></script>
+	<link type="text/css" rel="stylesheet" href="/php/stylesheets/main.css" />
+	<link type="text/css" rel="stylesheet" href="/php/stylesheets/jquery-ui-redmond-1.10.3.custom.css" />
+	<script src="/php/js/jquery-1.9.1.js"></script>
+	<script src="/php/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="/php/js/script.js"></script>
 	<script type="text/javascript">
 		function setSongRecord(songRecord, buttonValue) {
 			document.getElementById('amendedSongRecord').value = songRecord;
@@ -195,7 +195,7 @@
 				} else {
 					orderByFieldSelected = 'desc';
 				}
-				window.location='/displaycrate.php?sortField=' + sortFieldSelected + '&orderByField=' + orderByFieldSelected;
+				window.location='/php/displaycrate.php?sortField=' + sortFieldSelected + '&orderByField=' + orderByFieldSelected;
 			} 
 	
 			function processOkButton() {
@@ -337,7 +337,7 @@
 			
 			<div class="mainHeaderStyle sortHeaderPos">Sort by:</div>
 			<div class="mainHeaderStyle sortFieldPos">
-				<select id="sortField" name="sortField" onchange="window.location='/displaycrate.php?sortField='+this[this.selectedIndex].value;">
+				<select id="sortField" name="sortField" onchange="window.location='/php/displaycrate.php?sortField='+this[this.selectedIndex].value;">
 					<option value="artist, songTitle" <?php echo $sortArtistSelected      ?> > <?php echo $artistHeader         ?> </option>
 					<option value="songTitle"         <?php echo $sortSongTitleSelected   ?> > <?php echo $songTitleHeader      ?> </option>
 					<option value="recordLabel"       <?php echo $sortRecordLabelSelected ?> > <?php echo $recordLabelHeader    ?> </option>
@@ -386,12 +386,12 @@
 			
 			<div class="mainHeaderStyle mainHeaderPos"> <h1>Record Crate</h1> </div>
 			<div class="mainHeaderStyle homePageLink">
-				<input type="image" name="homeButton" src="/images/home.jpg" title="Home"
-		    		onclick="location.href='menu.php'";
+				<input type="image" name="homeButton" src="/php/images/home.jpg" title="Home"
+		    		onclick="location.href='/php/menu.php'";
 			   	 />
 			</div>
 			<div class="mainHeaderStyle addSongLink">
-				<input type="image" name="addButton" src="/images/small_record.png" title="Add a new song"
+				<input type="image" name="addButton" src="/php/images/small_record.png" title="Add a new song"
 			    	onclick="<?php echo $addUrl ?>";
 			    />
 			</div>
@@ -419,7 +419,7 @@
 
 	    <br><br><br><br>
 	    
-	    <form id="displayCrateForm" name="displayCrateForm" method="post" action="/crud.php">
+	    <form id="displayCrateForm" name="displayCrateForm" method="post" action="/php/crud.php">
 	    
 			<?php 
 				if ($processRecords) {
@@ -441,7 +441,7 @@
 				
 			<div class="rowStyle">
 	            <div class="editButton">
-	            	<input type="image" id="editButton" name="editButton" value="Edit" src="/images/pencil.png" title="Edit <?php echo $displayName; ?>"
+	            	<input type="image" id="editButton" name="editButton" value="Edit" src="/php/images/pencil.png" title="Edit <?php echo $displayName; ?>"
 	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel'].'::'.$dbRow['year']
 	            			.'::'.$dbRow['numberOfCopies'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
 	            		?>', 'editButton');"  
@@ -449,7 +449,7 @@
 				</div>
 				
 				<div>
-					<input type="image" id="deleteButton<?php echo $songId; ?>" class="deleteButton" name="deleteButton" value="Delete" src="/images/trash.png" title="Delete <?php echo $displayName; ?>"
+					<input type="image" id="deleteButton<?php echo $songId; ?>" class="deleteButton" name="deleteButton" value="Delete" src="/php/images/trash.png" title="Delete <?php echo $displayName; ?>"
 	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel'].'::'.$dbRow['year']
 	        				.'::'.$dbRow['numberOfCopies'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
 		    			?>', 'deleteButton');"
@@ -468,7 +468,7 @@
 				<div class="bpmField">            <?php echo $bpm;            ?> </div>
 				
 				<div class="editButtonEnd">
-					<input type="image" id="editButton" name="editButton" value="Edit" src="/images/pencil.png" title="Edit <?php echo $displayName; ?>"
+					<input type="image" id="editButton" name="editButton" value="Edit" src="/php/images/pencil.png" title="Edit <?php echo $displayName; ?>"
 	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel'].'::'.$dbRow['year']
 	            			.'::'.$dbRow['numberOfCopies'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
 	            		?>', 'editButton');"   
@@ -476,7 +476,7 @@
 				</div>
 				
 				<div>
-					<input type="image" id="deleteButton<?php echo $songId; ?>" class="deleteButtonEnd" name="deleteButton" value="Delete" src="/images/trash.png" title="Delete <?php echo $displayName; ?>"
+					<input type="image" id="deleteButton<?php echo $songId; ?>" class="deleteButtonEnd" name="deleteButton" value="Delete" src="/php/images/trash.png" title="Delete <?php echo $displayName; ?>"
 	            		onclick="setSongRecord('<?php echo $dbRow['songId'].'::'.$dbRow['artist'].'::'.$dbRow['songTitle'].'::'.$dbRow['recordLabel'].'::'.$dbRow['year']
 	        				.'::'.$dbRow['numberOfCopies'].'::'.$dbRow['duration'].'::'.$dbRow['side'].'::'.$dbRow['songFormat'].'::'.$dbRow['genre'].'::'.$dbRow['bpm']; 
 		    			?>', 'deleteButton');"

@@ -1,10 +1,10 @@
 <html>
 <head>
 <title>Record Crate Main Menu</title>
-<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
-<link type="text/css" rel="stylesheet" href="/stylesheets/jquery-ui-redmond-1.10.3.custom.css" />
-<script src="/js/jquery-1.9.1.js"></script>
-<script src="/js/jquery-ui-1.10.3.custom.js"></script>
+<link type="text/css" rel="stylesheet" href="/php/stylesheets/main.css" />
+<link type="text/css" rel="stylesheet" href="/php/stylesheets/jquery-ui-redmond-1.10.3.custom.css" />
+<script src="/php/js/jquery-1.9.1.js"></script>
+<script src="/php/js/jquery-ui-1.10.3.custom.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#accordion").accordion({
@@ -13,7 +13,7 @@
 		});
 		
 		$("#songFormat").change(function() {
-  			 var locationHref = 'menu.php?selectedSongFormat=' + $(this).val();
+  			 var locationHref = '/php/menu.php?selectedSongFormat=' + $(this).val();
   			 window.location.href = locationHref;
 		});
 		
@@ -103,13 +103,13 @@
 		  </div>
 		</div>
 		<div class="crateButtonField">
-			<input type="image" name="crateButton" value="Edit" src="/images/record_crate.jpg" title="Open record crate"
-				onclick="location.href='displaycrate.php'";
+			<input type="image" name="crateButton" value="Edit" src="/php/images/record_crate.jpg" title="Open record crate"
+				onclick="location.href='/php/displaycrate.php'";
 			/>
 		</div>
 		<div class="recordButtonField">
-			<input type="image" name="recordButton" value="Edit" src="/images/record.png" title="Add a new record"
-				onclick="location.href='crud.php?crudOp=I'";
+			<input type="image" name="recordButton" value="Edit" src="/php/images/record.png" title="Add a new record"
+				onclick="location.href='/php/crud.php?crudOp=I'";
 			/>
 		</div>
 	</div>

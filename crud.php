@@ -1,11 +1,11 @@
 <html>
 <head>
 <title>Php Crud</title>
-<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
-<link type="text/css" rel="stylesheet" href="/stylesheets/jquery-ui-redmond-1.10.3.custom.css" />
-<script src="/js/jquery-1.9.1.js"></script>
-<script src="/js/jquery-ui-1.10.3.custom.js"></script>
-<script src="/js/script.js"></script>
+<link type="text/css" rel="stylesheet" href="/php/stylesheets/main.css" />
+<link type="text/css" rel="stylesheet" href="/php/stylesheets/jquery-ui-redmond-1.10.3.custom.css" />
+<script src="/php/js/jquery-1.9.1.js"></script>
+<script src="/php/js/jquery-ui-1.10.3.custom.js"></script>
+<script src="/php/js/script.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 	
@@ -212,7 +212,7 @@
 
 	$displayCrateHref = urldecode($_POST['displayCrateHref']); 
    	if (empty($displayCrateHref)) {
-	   	$displayCrateHref = '/displaycrate.php?page=';
+	   	$displayCrateHref = '/php/displaycrate.php?page=';
 	   	if (empty($currentPage)) {
 	   		$displayCrateHref = $displayCrateHref . '1';
 	   	} else {
@@ -324,7 +324,7 @@
 							':numberOfCopies'=>$numberOfCopies, ':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm));
 							
 						// Redirect back to the form to re-enter more data
-						header('Location: /crud.php?crudOp=I');
+						header('Location: /php/crud.php?crudOp=I');
 					} 
 					catch (PDOException $e) { 
 				   		die("Insert failure: " . $e->getMessage()); 
@@ -404,7 +404,7 @@
 		<label id="searchFieldLabel"></label>
 	</div>
 
-	<form id="crudForm" name="crudForm" method="post" action="/crud.php?crudOp=<?php echo $crudType ?>">
+	<form id="crudForm" name="crudForm" method="post" action="/php/crud.php?crudOp=<?php echo $crudType ?>">
 		<div class="rowStyle">
 			<div class="crudHeader">Artist</div>
 			<div class="crudField"><input type="text" id="artist" name="artist" size="35" maxlength="100" value="<?php echo $artist ?>"/></div>
