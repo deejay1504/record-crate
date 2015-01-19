@@ -216,7 +216,7 @@
 				}
 	            $("#searchDialog").dialog("close");
 	            if (makeSearch) {
-					window.location.href = '/displaycrate.php?crudOp=SEARCH&searchField=' + searchField + '&searchFieldValue=' + searchFieldValue;
+					window.location.href = '/php/displaycrate.php?crudOp=SEARCH&searchField=' + searchField + '&searchFieldValue=' + searchFieldValue;
 			    } else {
 					$("#searchDialog").dialog("open");
 			    }

@@ -9,25 +9,11 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 	
-		function songBPM(event) {
-			event.preventDefault();
-			if ($("#songBpmDiv").css('display') == 'block') {
-				$("#songBpmDiv").css('display','none');
-				$("#discogsDiv").css('display','none');
-				$("#songBpmButton").button({icons: {primary:"ui-icon-circle-triangle-s"}, label: "Show Song BPM"});
-			} else {
-				$("#songBpmDiv").css('display','block');
-				$("#discogsDiv").css('display','block');
-				$("#songBpmButton").button({icons: {primary:"ui-icon-circle-triangle-n"}, label: "Hide Song BPM"});
-			}
-		} 
-		
-		function validateForm(event) {
+		function validateForm(event, songBpmWindow, discogsWindow) {
 			var makeSearch = true;
 			var errorText = '';
 			
 			if ($("#artist").val() == '') {
-//				$("#artistErrorLabel").html("Artist field cannot be empty");
 				errorText = errorText + 'Artist field cannot be empty<br>';
 				makeSearch = false;
 			}
@@ -48,6 +34,8 @@
 				makeSearch = false;
 			}
 			if (makeSearch) {
+				songBpmWindow.close();
+				discogsWindow.close();
 				$("#saveDetails").val("saveDetails");
 				$("#crudForm").submit();
 			} else {
@@ -74,21 +62,27 @@
 			$("#searchFieldLabel").html(errorMsg);
 			$("#searchDialog").dialog("open");
 		}
-		
-		$("#songBpmButton").click(function(event) {
-			songBPM(event);
-		});
+
+		// Display the Song BPM website to the left of the input form
+                var songBpmWindow = window.open('https://songbpm.com', '', 'top=170, left=20, width=700, height=800');
+                songBpmWindow.focus();
+
+		// Display the Discogs website to the right of the input form
+                var discogsWindow = window.open('http://www.discogs.com', '', 'top=170, left=1227, width=670, height=800');
+                discogsWindow.focus();
 		
 		$("#discogsButton").click(function(event) {
 			discogs(event);
 		});
 
 		$("#submitButton").click(function(event) {
-			validateForm(event);
+			validateForm(event, songBpmWindow, discogsWindow);
 		});
 
 		$("#backButton").click(function(event) {
 			event.preventDefault();
+			songBpmWindow.close();
+			discogsWindow.close();
 			window.location.href = $("#displayCrateHref").val();
 		});
 
@@ -233,7 +227,7 @@
    	}
    	
 	if ($crudType == "I") {
-		$crudHeader        = 'Add a new Song';
+		$crudHeader        = 'Add a funky new Song';
 		$formattedDuration = formatDuration(0, 0, 0);
 		$bpm               = 0;
 		$numberOfCopies    = 1;
@@ -479,7 +473,6 @@
 		<div class="rowStyle">
 			<div class="saveCrudButton"><button id="submitButton">Save</button></div> 
 			<div class="backCrudButton"><button id="backButton"  >Back</button></div>
-			<div class="songBpmDivButton"><button id="songBpmButton"></button></div>
 		</div>
 		
 		<input type="hidden" name="songId" value='<?php echo $songId ?>'/>
@@ -493,13 +486,6 @@
 		<input type="hidden" id="saveDetails" name="saveDetails"/>
 	</form>
 	
-	<div id="songBpmDiv" class="songBpmIFrame">
-		<iframe src="http://songbpm.com" width="840" height="530"></iframe>
-	</div>
-	
-	<div id="discogsDiv" class="discogsIFrame">
-		<iframe src="http://www.discogs.com" width="840" height="530"></iframe>
-	</div>
 </div>
 </body>
 </html>

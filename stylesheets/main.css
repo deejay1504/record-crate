@@ -349,16 +349,6 @@ container {
     left:1470px;
 }
 
-.songBpmIFrame {
-	position:absolute;
-	left:130px;
-}
-
-.discogsIFrame {
-	position:absolute;
-	left:980px;
-}
-
 .saveCrudButton {
 	position:absolute;
 	left:781px;
@@ -367,11 +357,6 @@ container {
 .backCrudButton {
 	position:absolute;
 	left:877px;
-}
-
-.songBpmDivButton {
-	position:absolute;
-	left:975px;
 }
 
 .crudMainHeader, .crudMainDate, .crudTotalRecords, .crudASides, .crudBSides, .crudAASides {
