@@ -351,12 +351,12 @@ container {
 
 .saveCrudButton {
 	position:absolute;
-	left:781px;
+	left:855px;
 }
 
 .backCrudButton {
 	position:absolute;
-	left:877px;
+	left:951px;
 }
 
 .crudMainHeader, .crudMainDate, .crudTotalRecords, .crudASides, .crudBSides, .crudAASides {

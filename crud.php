@@ -64,11 +64,11 @@
 		}
 
 		// Display the Song BPM website to the left of the input form
-                var songBpmWindow = window.open('https://songbpm.com', '', 'top=170, left=20, width=700, height=800');
+                var songBpmWindow = window.open('https://songbpm.com', '', 'scrollbars=1, top=170, left=20, width=700, height=800');
                 songBpmWindow.focus();
 
 		// Display the Discogs website to the right of the input form
-                var discogsWindow = window.open('http://www.discogs.com', '', 'top=170, left=1227, width=670, height=800');
+                var discogsWindow = window.open('http://www.discogs.com', '', 'scrollbars=1, top=170, left=1227, width=670, height=800');
                 discogsWindow.focus();
 		
 		$("#discogsButton").click(function(event) {
