@@ -44,7 +44,7 @@
 51,"Pretty Ricky & Boo-Ski","It\'s mine","Select Records",1985,00:03:49,"A Side","12 inch","Hip Hop",102
 52,"Percee-P & Ekim","Lung collapsing lyrics","Big beat",1992,00:03:17,"A Side","12 inch","Hip Hop",114
 53,"Hollis Crew","It\'s the beat","Def Jam Recordings",1985,00:04:19,"A Side","12 inch","Hip Hop",0
-54,"Divine Sounds","Do or die Bed Sty","Specific Records",1984,00:03:58,"B Side","12 inch","Hip Hop",203
+54,"Divine Sounds","Do Or Die Bed Sty","Specific Records",1984,00:00:00,"B Side","12 inch","Hip Hop",203
 55,"Divine Sounds",Changes,"Specific Records",1984,00:00:00,"A Side","12 inch","Hip Hop",0
 56,Aswad,"A New Chapter Of Dub","Simba Productions",1982,00:00:00,"A Side",LP,Reggae,0
 57,"Busy Signal","Reggae Music Again","VP Records",2012,00:00:00,"A Side",LP,Reggae,0
@@ -76,7 +76,7 @@
 84,Various,Various,"Lee\'s Gold",1969,00:00:00,"A Side","10 inch",Reggae,0
 85,"James Brown","Blues & Pants",Polydor,1971,00:08:00,"A Side","12 inch",Funk,99
 86,Whodini,"Magic\'s Wand",Jive,1982,00:05:32,"A Side","7 inch","Hip Hop",112
-87,"Cutty Ranks","Who seh me dun","VP Recordings",2000,00:03:12,"A Side","12 inch",Reggae,96
+87,"Cutty Ranks","Who Seh Me Dun","VP Recordings",2000,00:03:12,"A Side","12 inch",Reggae,96
 88,"Phoenix City All Stars","Two Tone Gone Ska","Phoenix City Records",2012,00:00:00,"A Side",LP,Ska,0
 89,"Half Pint",Greetings,"Power House",1984,00:03:35,"A Side","12 inch",Reggae,146
 90,"The Wailing Wailers","The Wailing Wailers","Studio 1",1974,00:00:00,"A Side",LP,Reggae,0
@@ -381,7 +381,7 @@
 397,"Fats Domino","Bo Weevil",Imperial,1956,00:02:00,"A Side","7 inch","Rock \'n\' Roll / Blues",98
 398,"Baby Head","Jungle Law","Rockers Revolt",2010,00:00:00,"A Side","7 inch",Reggae,0
 399,"Billy Bland","Let The Little Girl Dance","Baby Head",1960,00:02:18,"A Side","7 inch","R & B",71
-400,"Bobby Bland","I pity the fool",Duke,1961,00:02:40,"A Side","7 inch"," Blues / Funk / Soul",75
+400,"Bobby Bland","I Pity The Fool",Duke,1961,00:00:00,"A Side","7 inch"," Blues / Funk / Soul",75
 401,"Bobby Callender","Little Star",Roulette,1963,00:02:40,"A Side","7 inch","Funk / Soul",0
 402,"Booker T & the MGs","My Sweet Potato",Stax,1966,00:00:00,"A Side","7 inch","Funk / Soul / R \'n\' B",0
 403,"Bonnie Lou","Train Whistle Blues",King,1953,00:02:34,"A Side","7 inch",Rockabilly,0
@@ -2214,3 +2214,45 @@
 2270,"Freshco & Miz","We Don\'t Play","Tommy Boy",1990,00:00:00,"A Side","12 inch","Hip Hop",0
 2272,"Bob Marley","Legend - The Best Of Bob Marley","Island Records",2014,00:00:00,"A Side",LP,Reggae,0
 2273,Chronixx,"Selassie Souljahz","Royal Order Music",2013,00:04:15,"A Side","7 inch",Reggae,176
+2274,"Pharoahe Monch","Post Traumatic Stress Disorder",Fatbeats,2014,00:00:00,"A Side",LP,"Hip Hop",0
+2275,"Average White Band","Soul Searching",Atlantic,1976,00:00:00,"A Side",LP,"Soul / Funk",0
+2276,"Donald Byrd","Stepping Into Tomorrow","Blue Note",1975,00:00:00,"A Side",LP,Jazz,0
+2277,"Ray Charles","The Great Hits Of Ray Charles",Atlantic,1966,00:00:00,"A Side",LP,"Rhythm \'n\' Blues",0
+2278,Various,Wildstyle,"Mr Bongo",1998,00:00:00,"A Side",LP,"Hip Hop",0
+2279,"Cutty Ranks","The Stopper","Fashion Records",1990,00:03:49,"A Side","12 inch",Reggae,91
+2280,Chronixx,"Dread & Terrible","Chronixx Music Group",2014,00:00:00,"A Side",LP,Reggae,0
+2281,"Tarrus Riley","Love Situation","Zojak World Wide",2014,00:00:00,"A Side",LP,Reggae,0
+2282,"Brother Jack McDuff & David Newman","Double Barrelled Soul",Atlantic,1968,00:00:00,"A Side",LP,Jazz,0
+2283,"Roy Ayers & Ubiquity",Searching,Polydor,1976,00:00:00,"A Side",LP,"Soul / Funk",0
+2284,"Minor Threat","Minor Threat",Dischord,1981,00:00:00,"A Side",LP,Hardcore,0
+2285,"Lisa And The Lips","Lisa And The Lips","Heart Of Gold S.L.",2013,00:00:00,"A Side",LP,"Soul / Rock",0
+2286,"Royal Blood","Figure It Out","Black Mammoth Records",2014,00:03:04,"A Side","7 inch",Rock,108
+2287,"Cornell Campbell","The Sun",Justice,1975,00:03:07,"A Side","7 inch",Reggae,0
+2288,"Hopeton Lewis","Take It Easy",Merritone,1967,00:03:35,"A Side","7 inch","Reggae / Rocksteady",97
+2289,"Mary Jane Girls","All Night Long",Motown,1983,00:05:47,"A Side","12 inch","Soul / Funk",95
+2290,"Cy Grant","Cool Folk!","World Record Club",1964,00:00:00,"A Side",LP,"Folk / Calypso",0
+2291,"El Michels Affair","Loose Change","Truth And Soul",2014,00:00:00,"A Side",LP,"Soul / Funk",0
+2292,"Spanky Wilson","Sunshine Of Your Love",BGP,1970,00:03:39,"A Side","7 inch","Soul / Funk",124
+2293,"King Curtis And The Kingpins","Whole Lotta Love","Atco Records",1969,00:02:42,"A Side","7 inch","Soul / Rock",93
+2294,"The Bots","Pink Palms",Faderlabel,2014,00:00:00,"A Side",LP,"Rock / Punk",0
+2295,"The Sex Pistols",Spunk,Blank,1977,00:00:00,"A Side",LP,"Punk Rock",0
+2296,"John Holt","Love I Can Feel",Volcano,1974,00:03:42,"A Side","7 inch",Reggae,81
+2297,"The Staples SIngers","The Best Of The Staples SIngers","Vee Jay International",1988,00:00:00,"A Side",LP,"Gospel / Soul",0
+2298,"Mac McRaw","B-Boy Bionics","Cold Rock Stuff",2014,00:00:00,"A Side","12 inch","Hip Hop",0
+2299,"Carole King",Tapestry,"A & M Records",1971,00:00:00,"A Side",LP,"Rock / Pop / Folk",0
+2300,"Lack Of Afro ft Steve Marriott","Touch My Soul",Freestyle,2007,00:03:54,"A Side","7 inch","Funk / Hip Hop",108
+2301,"Lack Of Afro","The Outsider",Freestyle,2007,00:03:47,"B Side","7 inch","Funk / Hip Hop",113
+2302,"Professor Longhair","Big Chief Part 1","Watch Records",1964,00:02:24,"A Side",LP,"Funk / Soul",0
+2303,Brasiliana,"Tam Tam Tam","Trunk Records",2014,00:00:00,"A Side",LP,Brazilian,0
+2304,Horseman,"Dawn Of The Dread","Mr Bongo",2014,00:00:00,"A Side",LP,Reggae,0
+2305,"Notis & Iba Mahr","Diamond Sox","Notis Records",2014,00:00:00,"A Side","7 inch",Reggae,0
+2306,"Royal Blood","Royal Blood","WB Records",2014,00:00:00,"A Side",LP,Rock,0
+2307,"Sleaford Mods","Divide And Exit","Harbinger Sounds",2014,00:00:00,"A Side",LP,"Punk / Poetry / Electronic",0
+2308,"Sleaford Mods","Austerity Dogs","Harbinger Sounds",2013,00:00:00,"A Side",LP,"Punk / Poetry / Electronic",0
+2309,"Prince Buster","She Was A Rough Rider","Blue Beat",1968,00:00:00,"A Side",LP,Ska,0
+2310,"The Enemy","40 Days And 40 Nights","Stiff Records",2006,00:03:35,"AA Side","7 inch","Indie / Rock",165
+2311,"The Enemy","Dancing All Night","Stiff Records",2006,00:00:00,"AA Side","7 inch","Indie / Rock",0
+2312,"Big Youth & Dennis Brown","A So We Stay","Joe Gibbs Record Globe",1973,00:00:00,"A Side",LP,Reggae,0
+2313,"Dennis Brown","No Man Is An Island","Studio One",1970,00:00:00,"A Side",LP,Reggae,0
+2314,"Dennis Brown","Equal Rights","Lightning Records",1978,00:02:48,"A Side","7 inch",Reggae,80
+2315,"The Damned","New Rose",Stiff,1976,00:02:39,"A Side","12 inch","Punk Rock",178
