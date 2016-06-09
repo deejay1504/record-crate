@@ -5,7 +5,7 @@ h1 {
 	font-weight: bold;
 	margin-top: 0px;
 	margin-bottom: 3px;
-} 
+}
 
 body {
   font-size: 14px;
@@ -25,7 +25,7 @@ container {
 .bold {
 	font-weight: bold;
 }
- 
+
 .error {
     font-weight: bold;
     color: #BB0000;
@@ -47,7 +47,12 @@ container {
     left:820px;
 }
 
-.mainHeaderStyle, .sortHeaderPos, .sortFieldPos, .searchHeaderPos, .searchByFieldPos, .dateHeaderPos, 
+.songkickIcon {
+    position:absolute;
+    top:30px;
+}
+
+.mainHeaderStyle, .sortHeaderPos, .sortFieldPos, .searchHeaderPos, .searchByFieldPos, .dateHeaderPos,
 .mainHeaderPos, .totalHeaderPos, .aSideHeaderPos, .bSideHeaderPos, .aaSideHeaderPos {
 	font-weight: bold;
     position:absolute;
@@ -55,7 +60,7 @@ container {
     height:100%;
 }
 
-.headerStyle, .artistHeaderPos, .songTitleHeaderPos, .recordLabelHeaderPos, .yearHeaderPos, .numberOfCopiesHeaderPos, 
+.headerStyle, .artistHeaderPos, .songTitleHeaderPos, .recordLabelHeaderPos, .yearHeaderPos, .numberOfCopiesHeaderPos,
 .durationHeaderPos, .sideHeaderPos, .songFormatHeaderPos, .genreHeaderPos, .bpmHeaderPos {
 	font-weight: bold;
 	font-size: 16px;
@@ -68,7 +73,7 @@ container {
 .sideField, .songFormatField, .genreField, .bpmField, .displayPagesField {
     position:absolute;
     border-radius:15px;
-    padding-left: 7px; 
+    padding-left: 7px;
 }
 
 .dateHeaderPos {
@@ -246,7 +251,7 @@ container {
 
 .rowStyle {
     position:relative;
-    padding: 0px 0px; 
+    padding: 0px 0px;
     height: 30px;
 }
 
@@ -254,35 +259,35 @@ container {
     position:relative;
 	top:85px;
     left:50px;
-} 
+}
 
 .editButton {
 	margin-top: 6px;
 	margin-left: 60px;
     width:5px;
     height:5px;
-} 
+}
 
 .deleteButton {
 	margin-top: -2px;
 	margin-left: 85px;
     width:25px;
     height:25px;
-} 
+}
 
 .editButtonEnd {
 	margin-top: -33px;
 	margin-left: 1706px;
     width:5px;
     height:5px;
-} 
+}
 
 .deleteButtonEnd {
 	margin-top: -2px;
 	margin-left: 1731px;
     width:25px;
     height:25px;
-} 
+}
 
 .currentPageField, .displayPagesField, .homePageLink, .addSongLink, .displayJumpMenuField, .searchTotal {
 	position:absolute;

@@ -17,6 +17,12 @@
   			 window.location.href = locationHref;
 		});
 		
+		$.getJSON("http://api.songkick.com/api/3.0/events.json?location=clientip&apikey=NGEqcVHMhrUb1qRu&jsoncallback=?",
+	        function(data){
+			$.each(data["resultsPage"]["results"]["event"], function(i, entry){
+        			$("#songkickLabel").append('<li><a href="' + entry.uri+' " target="_blank">'+entry.displayName +'</a></li>');
+			});
+		});
 	});
 	
 </script>
@@ -101,6 +107,13 @@
 					<option value="MP3"       <?php if ($songFormatNum == 7) echo 'selected'; ?> >MP3</option>
 				</select>
 			</center></p>
+		  </div>
+		  <h3>Upcoming Gigs</h3>
+		  <div>
+		    <div class="songkickIcon">
+			<input type="image" src="/php/images/songkick.png" onclick="window.open('http://www.songkick.com')" />
+		    </div>
+		    <p><center><label id="songkickLabel"></label></center></p>
 		  </div>
 		</div>
 		<div class="crateButtonField">

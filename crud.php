@@ -8,11 +8,11 @@
 <script src="/php/js/script.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-	
+
 		function validateForm(event, songBpmWindow, discogsWindow) {
 			var makeSearch = true;
 			var errorText = '';
-			
+
 			if ($("#artist").val() == '') {
 				errorText = errorText + 'Artist field cannot be empty<br>';
 				makeSearch = false;
@@ -42,35 +42,35 @@
 				event.preventDefault();
 				event.stopPropagation();
 				setAlertDialog('Errors found!', errorText);
-		    }
+		  }
 		}
-		
+
 		function setAlertDialog(dialogTitle, errorMsg) {
 			// Override the dialogBox in script.js to add our own 'Ok' button
-			var dialogButtons = dialogBox.dialog("option", "buttons"); 
-			$.extend(dialogButtons, { 
+			var dialogButtons = dialogBox.dialog("option", "buttons");
+			$.extend(dialogButtons, {
 				Ok: function() {
 					$("#searchDialog").dialog("close");
 				},
 			});
-			dialogBox.dialog("option", "buttons", dialogButtons); 
-			
+			dialogBox.dialog("option", "buttons", dialogButtons);
+
 			// Hide the Cancel button as we only need an Ok button for this alert dialog
 			$(".ui-dialog-buttonpane button:contains('Cancel')").button().hide();
-			
+
 			$("#searchDialog").dialog('option', 'title', dialogTitle);
 			$("#searchFieldLabel").html(errorMsg);
 			$("#searchDialog").dialog("open");
 		}
 
 		// Display the Song BPM website to the left of the input form
-                var songBpmWindow = window.open('https://songbpm.com', '', 'scrollbars=1, top=170, left=20, width=700, height=800');
-                songBpmWindow.focus();
+    var songBpmWindow = window.open('https://songbpm.com', '', 'scrollbars=1, top=170, left=20, width=700, height=800');
+    songBpmWindow.focus();
 
 		// Display the Discogs website to the right of the input form
-                var discogsWindow = window.open('http://www.discogs.com', '', 'scrollbars=1, top=170, left=1227, width=670, height=800');
-                discogsWindow.focus();
-		
+    var discogsWindow = window.open('http://www.discogs.com', '', 'scrollbars=1, top=170, left=1227, width=670, height=800');
+    discogsWindow.focus();
+
 		$("#discogsButton").click(function(event) {
 			discogs(event);
 		});
@@ -89,11 +89,11 @@
 		$("#submitButton").button({icons: {primary:"ui-icon-disk"}});
 		$("#backButton").button({icons: {primary:"ui-icon-circle-triangle-w"}});
 		$("#songBpmButton").button({icons: {primary:"ui-icon-circle-triangle-s"}, label: "Hide Song BPM"});
-		
+
 		$("#artist").focus();
-		
+
 		$("#inputChanged").val("false");
-		
+
 		$("#artist").change(function() {
   			$("#inputChanged").val("true");
 		});
@@ -109,14 +109,39 @@
 		$("#songFormat").change(function() {
   			$("#inputChanged").val("true");
 		});
-		
+
+		var iframe = $('<iframe frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
+    var dialog = $("<div></div>").append(iframe).appendTo("body").dialog({
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        width: "auto",
+        height: "auto",
+        close: function () {
+            iframe.attr("src", "");
+        }
+    });
+    $(".thumb a").on("click", function (e) {
+        e.preventDefault();
+        var src = $(this).attr("href");
+        var title = $(this).attr("data-title");
+        var width = $(this).attr("data-width");
+        var height = $(this).attr("data-height");
+        iframe.attr({
+            width: +width,
+            height: +height,
+            src: src
+        });
+        dialog.dialog("option", "title", title).dialog("open");
+    });
+
 	});
 </script>
 </head>
 
 <body>
 <?php
-	
+
 	function createHours($id='hours_select', $selected=null) {
         /*** range of hours ***/
         $r = range(0, 12);
@@ -135,16 +160,15 @@
         $select .= '</select>';
         return $select;
     }
-    
+
     function createMMSS($id='minute_select', $selected=null) {
         /*** array of mins ***/
         $mmss_range = range(0, 59);
 
-   		$selected = in_array($selected, $mmss_range) ? $selected : 0;
+   		  $selected = in_array($selected, $mmss_range) ? $selected : 0;
 
         $select = "<select name=\"$id\" id=\"$id\">\n";
-        foreach($mmss_range as $mm_ss)
-        {
+        foreach($mmss_range as $mm_ss) {
         	$paddedMMSS = str_pad($mm_ss, 2, '0', STR_PAD_LEFT);
             $select .= "<option value=\"$paddedMMSS\"";
             $select .= ($mm_ss==$selected) ? ' selected="selected"' : '';
@@ -153,31 +177,31 @@
         $select .= '</select>';
         return $select;
     }
-    
+
     function formatDuration($hh, $mm, $ss) {
-    	$hh = createHours('duration_hh', $hh) . ':' ; 
-		$mm = createMMSS('duration_mm', $mm) . ':'; 
-		$ss = createMMSS('duration_ss', $ss); 
-		return $hh . $mm . $ss; 
+    	$hh = createHours('duration_hh', $hh) . ':' ;
+  		$mm = createMMSS('duration_mm', $mm) . ':';
+	  	$ss = createMMSS('duration_ss', $ss);
+	  	return $hh . $mm . $ss;
     }
-    
+
     function displayMessage($title, $message) {
-    	echo "<script>$(document).ready(function() {var dialogButtons = dialogBox.dialog(\"option\", \"buttons\"); 
-			$.extend(dialogButtons, { 
+    	echo "<script>$(document).ready(function() {var dialogButtons = dialogBox.dialog(\"option\", \"buttons\");
+			$.extend(dialogButtons, {
 				Ok: function() {
 					$(\"#searchDialog\").dialog(\"close\");
 				},
 			});
-			dialogBox.dialog(\"option\", \"buttons\", dialogButtons); 
-			
+			dialogBox.dialog(\"option\", \"buttons\", dialogButtons);
+
 			// Hide the Cancel button as we only need an Ok button for this alert dialog
 			$(\".ui-dialog-buttonpane button:contains('Cancel')\").button().hide();
-			
+
 			$(\"#searchDialog\").dialog('option', 'title', '" . $title . "');
 			$(\"#searchFieldLabel\").html('" . addslashes($message) . "');
 			$(\"#searchDialog\").dialog(\"open\"); });</script>";
     }
-    
+
     function setSide($sideValue) {
 		if ($sideValue == "A Side") {
 			$sideNum = 1;
@@ -192,19 +216,19 @@
 	$config = require 'config.php';
 	require_once 'dbutils.php';
 	require_once 'general_utils.php';
-	
-	$db            = new DbUtils;  
+
+	$db            = new DbUtils;
 	$db->countTotals("", "", "", "");
-	
+
 	$crudType      = (empty($_GET['crudOp'])) ? $_POST['crudOp'] : $_GET['crudOp'];
 	$sortField     = (empty($_GET['sortField'])) ? $_POST['sortField'] : $_GET['sortField'];
 	$crudSubmit    = $_GET['crudSubmit'];
-	$buttonPressed = urldecode($_POST['buttonPressed']); 
-	$currentPage   = urldecode($_POST['currentPage']); 
-   	$itemsPerPage  = urldecode($_POST['itemsPerPage']);
-	$searchUrl     = urldecode($_POST['searchUrl']); 
+	$buttonPressed = urldecode($_POST['buttonPressed']);
+	$currentPage   = urldecode($_POST['currentPage']);
+ 	$itemsPerPage  = urldecode($_POST['itemsPerPage']);
+	$searchUrl     = urldecode($_POST['searchUrl']);
 
-	$displayCrateHref = urldecode($_POST['displayCrateHref']); 
+	$displayCrateHref = urldecode($_POST['displayCrateHref']);
    	if (empty($displayCrateHref)) {
 	   	$displayCrateHref = '/php/displaycrate.php?page=';
 	   	if (empty($currentPage)) {
@@ -212,94 +236,94 @@
 	   	} else {
 	   		$displayCrateHref = $displayCrateHref . $currentPage;
 	   	}
-	
+
 	   	if (!empty($itemsPerPage)) {
 	   		$displayCrateHref = $displayCrateHref . '&ipp=' . $itemsPerPage;
 	   	}
-	
+
 	   	if (!empty($sortField)) {
 	   		$displayCrateHref = $displayCrateHref . '&sortField=' . $sortField;
 	   	}
-	
+
 	  	if (!empty($searchUrl)) {
 	   		$displayCrateHref = $searchUrl;
 	   	}
-   	}
-   	
+  }
+
 	if ($crudType == "I") {
 		$crudHeader        = 'Add a funky new Song';
 		$formattedDuration = formatDuration(0, 0, 0);
 		$bpm               = 0;
 		$numberOfCopies    = 1;
-		
+
 		// Set the selected value for the drop down 'songFormat' field
 		$selectedSongFormat = getCurrentSongFormat($db);
 		$songFormatNum = setSongFormat($selectedSongFormat);
 	} else {
-		$songRecord = urldecode($_POST['amendedSongRecord']); 
+		$songRecord = urldecode($_POST['amendedSongRecord']);
 	   	$deleteOk   = urldecode($_POST['deleteOk']);
-		
+
 		list($songId, $artist, $songTitle, $recordLabel, $year, $numberOfCopies, $duration, $side, $songFormat, $genre, $bpm) =
     		split("::", $songRecord, 11);
-    		
+
     	$songFormatNum = setSongFormat($songFormat);
-    		
+
 		if (! is_null($duration) && ! empty($duration)) {
 			list($duration_hh, $duration_mm, $duration_ss) = split(":", $duration, 3);
 			$formattedDuration = formatDuration($duration_hh, $duration_mm, $duration_ss);
 		} else {
 			$formattedDuration = formatDuration(0, 0, 0);
 		}
-		
+
 		if ($buttonPressed == 'editButton') {
 			$crudHeader = 'Amend a Song';
-			$previousRecordLabel = $recordLabel; 
+			$previousRecordLabel = $recordLabel;
 		}
-	
+
 		if ($buttonPressed == 'deleteButton') {
 			if ($deleteOk == 'true') {
 				$crudHeader = 'Delete a Song';
-				
+
 				$sql = "delete from crate where songId = :songId";
-					
+
 				try {
 					$stmt = $db->dbConnection->prepare($sql);
 					$stmt->execute(array(':songId'=>$songId));
-				} 
-				catch (PDOException $e) { 
-			   		die("Insert failure: " . $e->getMessage()); 
 				}
-			} 
+				catch (PDOException $e) {
+			   		die("Insert failure: " . $e->getMessage());
+				}
+			}
 			// Redirect back to the display crate php
-			header('Location: ' . $displayCrateHref); 
+			header('Location: ' . $displayCrateHref);
 		}
-	}	
-	
+	}
+
 	// Set the selected value for the drop down 'side' field
 	if (! is_null($side) && ! empty($side)) {
 		$sideNum = setSide($side);
 	}
-	
-	$saveDetails = urldecode($_POST['saveDetails']); 
-	
+
+	$saveDetails = urldecode($_POST['saveDetails']);
+
 	if (! is_null($saveDetails) && ! empty($saveDetails) && $saveDetails == 'saveDetails') {
 		try {
 
-			$songId         = urldecode($_POST['songId']); 
-			$artist         = urldecode($_POST['artist']); 
-			$songTitle      = urldecode($_POST['songTitle']); 
-			$recordLabel    = urldecode($_POST['recordLabel']); 
-			$year           = urldecode($_POST['year']); 
-			$numberOfCopies = urldecode($_POST['numberOfCopies']); 
-			$duration_hh    = urldecode($_POST['duration_hh']); 
-			$duration_mm    = urldecode($_POST['duration_mm']); 
-			$duration_ss    = urldecode($_POST['duration_ss']); 
-			$side 		    = urldecode($_POST['side']); 
-			$songFormat     = urldecode($_POST['songFormat']); 
-			$genre          = urldecode($_POST['genre']); 
-			$bpm            = urldecode($_POST['bpm']); 
-			$inputChanged   = urldecode($_POST['inputChanged']); 
-			
+			$songId         = urldecode($_POST['songId']);
+			$artist         = urldecode($_POST['artist']);
+			$songTitle      = urldecode($_POST['songTitle']);
+			$recordLabel    = urldecode($_POST['recordLabel']);
+			$year           = urldecode($_POST['year']);
+			$numberOfCopies = urldecode($_POST['numberOfCopies']);
+			$duration_hh    = urldecode($_POST['duration_hh']);
+			$duration_mm    = urldecode($_POST['duration_mm']);
+			$duration_ss    = urldecode($_POST['duration_ss']);
+			$side 		      = urldecode($_POST['side']);
+			$songFormat     = urldecode($_POST['songFormat']);
+			$genre          = urldecode($_POST['genre']);
+			$bpm            = urldecode($_POST['bpm']);
+			$inputChanged   = urldecode($_POST['inputChanged']);
+
 			$duration = $duration_hh . ':' . $duration_mm . ':' . $duration_ss;
 
 			// Insert a new record but first check if it has already been inserted
@@ -311,31 +335,31 @@
 				} else {
 					$sql = "INSERT INTO crate (artist, songTitle, recordLabel, year, numberOfCopies, duration, side, songFormat, genre, bpm) " .
 					       "VALUES (:artist, :songTitle, :recordLabel, :year, :numberOfCopies, :duration, :side, :songFormat, :genre, :bpm)";
-					
+
 					try {
 						$stmt = $db->dbConnection->prepare($sql);
-						$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,  
+						$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,
 							':numberOfCopies'=>$numberOfCopies, ':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm));
-							
+
 						// Redirect back to the form to re-enter more data
 						header('Location: /php/crud.php?crudOp=I');
-					} 
-					catch (PDOException $e) { 
-				   		die("Insert failure: " . $e->getMessage()); 
+					}
+					catch (PDOException $e) {
+				   		die("Insert failure: " . $e->getMessage());
 					}
 				}
 			} else {
 				// Update an existing record first check if it already exists if the artist, song title or record label has been changed
 				$crudHeader = 'Amend a Song';
-				
+
 				$recordCount = ($inputChanged == "false") ? 0 : $db->checkDuplicateRecord($artist, $songTitle, $recordLabel, $songFormat);
-				
+
 				if ($recordCount > 0) {
 					displayMessage("Warning", '<b>' . $artist . ' - ' . $songTitle . ' - ' . $recordLabel . "</b> has already been added!");
 					$recordLabel = urldecode($_POST['previousRecordLabel']);
 				} else {
 					$sql = "update crate ".
-	                       "set artist         = :artist,         " . 
+	                       "set artist         = :artist,         " .
 	                       " 	songTitle      = :songTitle,      " .
 	                       " 	recordLabel    = :recordLabel,    " .
 	                       "    year           = :year,           " .
@@ -346,39 +370,39 @@
 	                       "    genre          = :genre,          " .
 	                       "    bpm            = :bpm             " .
 	                       "where songId       = :songId";
-	                       
+
 					try {
 						$stmt = $db->dbConnection->prepare($sql);
-						$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,   
+						$stmt->execute(array(':artist'=>addslashes($artist), ':songTitle'=>addslashes($songTitle), ':recordLabel'=>addslashes($recordLabel), ':year'=>$year,
 							':numberOfCopies'=>$numberOfCopies, ':duration'=>$duration, ':side'=>$side, ':songFormat'=>$songFormat, ':genre'=>addslashes($genre), ':bpm'=>$bpm, ':songId'=>$songId));
-						
+
 						displayMessage("Updated!", "Details successfully updated");
-						
+
 						$formattedDuration = formatDuration($duration_hh, $duration_mm, $duration_ss);
-					} 
-					catch (PDOException $e) { 
-				   		die("Update failure: " . $e->getMessage()); 
+					}
+					catch (PDOException $e) {
+				   		die("Update failure: " . $e->getMessage());
 					}
 				}
 			}
 		} catch (PDOException $pe) {
 		    die("Could not connect to the database $dbname :" . $pe->getMessage());
 		}
-		
+
 		// Reset the Song Format and Side drop down in case the values have been amended
 		if (is_null($songFormat) || empty($songFormat)) {
 			$selectedSongFormat = getCurrentSongFormat($db);
 			$songFormatNum = setSongFormat($selectedSongFormat);
-		} else {	
+		} else {
 			$songFormatNum = setSongFormat($songFormat);
 		}
-		
+
 		// Set the selected value for the drop down 'side' field
 		if (! is_null($side) && ! empty($side)) {
 			$sideNum = setSide($side);
 		}
-	} 
-	
+	}
+
 ?>
 
 <!-- Enter and validate details to be persisted into a form -->
@@ -392,8 +416,8 @@
 		<div class="crudBSides">  <?php echo $db->totalBSides;  ?> B Sides </div>
 		<div class="crudAAsides"> <?php echo $db->totalAASides; ?> AA Sides </div>
 	</div>
-	
-				
+
+
 	<div id="searchDialog">
 		<label id="searchFieldLabel"></label>
 	</div>
@@ -426,7 +450,7 @@
 			<div class="crudHeader">Genre</div>
 			<div class="crudField"><input type='text' id='genre' name='genre' size="35" maxlength="100" value="<?php echo $genre ?>"/></div>
 		</div>
-		
+
 		<div class="rowStyle">
 			<div class="crudHeader">Number Of Copies</div>
 			<div class="crudField"><input type='text' id='numberOfCopies' name='numberOfCopies' size="8" maxlength="2" value="<?php echo $numberOfCopies ?>"/></div>
@@ -469,12 +493,16 @@
 		</div>
 
 		<br>
-		
+
 		<div class="rowStyle">
-			<div class="saveCrudButton"><button id="submitButton">Save</button></div> 
+			<div class="saveCrudButton"><button id="submitButton">Save</button></div>
 			<div class="backCrudButton"><button id="backButton"  >Back</button></div>
+			<div class="thumb">
+			    <a href="http://songbpm.com"   data-title="Std 4:3 ratio video" data-width="512" data-height="384"><img src="http://dummyimage.com/120x90/000/f00&text=Std+4-3+ratio+video" /></a></li>
+			    <a href="http://www.discogs.com" data-title="HD 16:9 ratio video" data-width="512" data-height="288"><img src="http://dummyimage.com/120x90/000/f00&text=HD+16-9+ratio+video" /></a></li>
+			</div>
 		</div>
-		
+
 		<input type="hidden" name="songId" value='<?php echo $songId ?>'/>
 		<input type="hidden" id="displayCrateHref" name="displayCrateHref" value="<?php echo $displayCrateHref ?>"/>
 		<input type="hidden" id="currentPage" name="currentPage" value="<?php echo $currentPage; ?>"/>
@@ -485,7 +513,7 @@
 		<input type="hidden" id="inputChanged" name="inputChanged"/>
 		<input type="hidden" id="saveDetails" name="saveDetails"/>
 	</form>
-	
+
 </div>
 </body>
 </html>
