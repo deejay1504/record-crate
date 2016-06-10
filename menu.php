@@ -17,7 +17,9 @@
   			 window.location.href = locationHref;
 		});
 		
-		$.getJSON("http://api.songkick.com/api/3.0/events.json?location=clientip&apikey=NGEqcVHMhrUb1qRu&jsoncallback=?",
+		var songkickEventsCall = $("#songkickEventsCall").val();
+
+		$.getJSON(songkickEventsCall,
 	        function(data){
 			$.each(data["resultsPage"]["results"]["event"], function(i, entry){
         			$("#songkickLabel").append('<li><a href="' + entry.uri+' " target="_blank">'+entry.displayName +'</a></li>');
@@ -29,8 +31,12 @@
 </head>
 <body class="menuBody">
 	<?php
+		$config = require 'config.php';
+
 		require_once 'dbutils.php';
 		require_once 'general_utils.php';
+
+		$songkickEventsCall = $config['songkick_events'];
 		
 		$db = new DbUtils;  
 		$db->countTotals($crudOp, $searchFieldValue, $searchField, $likeFieldValue);
@@ -130,5 +136,6 @@
 	<input type="hidden" id="menuLocationHref"/>
 	<input type="hidden" id="openCrateLocationHref"/>
 	<input type="hidden" id="songFormatValue"/>
+	<input type="hidden" id="songkickEventsCall" value="<?php echo $songkickEventsCall; ?>"/>
 </body>
 </html>
